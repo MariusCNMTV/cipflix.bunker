@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/date.css" />
+    <link rel="stylesheet" href="css/body.css" />
+    <title>URad Sensors</title>
+  </head>
+
+  <body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+      <div class="date-info">
+        <div class="month-year">
+          <h1 id="month"></h1>
+          <h3 id="year"></h3>
+        </div>
+        <div class="day">
+          <h2 id="day"></h1>
+        </div>
+      </div>
+    </div>
+    <div class="bott-banner"></div>
+    </div>
+
+    <div class="container">
+      <video
+        src="/assets/video/background.mp4"
+        autoplay
+        loop
+        playsinline
+        muted
+      ></video>
+
+    <div class="description">
+      <p>
+        Navigate through the intricate network of towering trees, each telling
+        a tale of resilience and growth.
+      </p>
+      <p class="copyright">
+        Video Credit: Be The Observer on
+        <a
+          href="https://www.pexels.com/video/drone-footage-of-mountain-covered-in-trees-6807924/"
+          >pexels.com</a>
+      </p>
+    </div>
+  </div>
+
+    <script>
+      // JavaScript pentru a seta data curentă
+      const currentDate = new Date();
+      document.getElementById("month").textContent = currentDate.toLocaleString("default", { month: "long" }).toUpperCase();
+      document.getElementById("year").textContent = currentDate.getFullYear();
+      document.getElementById("day").textContent = currentDate.getDate();
+    </script>
+  </body>
+</html>
