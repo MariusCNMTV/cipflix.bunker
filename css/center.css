@@ -1,0 +1,150 @@
+@keyframes r1 {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(45deg); /* Clockwise rotation */
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-90deg); /* Counterclockwise rotation */
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(180deg); /* Clockwise again */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg); /* Counterclockwise back */
+  }
+}
+@keyframes r2 {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(5deg); /* Clockwise rotation */
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-5deg); /* Counterclockwise rotation */
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(10deg); /* Clockwise again */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-10deg); /* Counterclockwise back */
+  }
+}
+.c1 {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: r2 3s infinite linear;
+}
+
+.c2 {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: r1 10s infinite linear;
+}
+
+.c3 {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: r1 5s infinite linear;
+}
+
+path {
+  fill: transparent;
+  stroke-width: 10;
+  stroke: transparent;
+}
+
+.filled {
+  stroke: #40fdfc;
+}
+
+/* Style for the circular progress bar */
+.rotating-progress-bar {
+  position: absolute; /* Center on the screen */
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; /* Diameter of the circle */
+  height: 600px;
+  border: 3px solid transparent; /* Transparent border for spacing */
+  border-radius: 50%; /* Makes it circular */
+  border-top: 3px solid #40fdfc; /* Progress bar segment */
+  border-right: 3px solid transparent; /* Discontinuous effect */
+  border-bottom: 3px solid #40fdfc; /* Progress bar segment */
+  border-left: 3px solid transparent; /* Discontinuous effect */
+  animation: random-rotate 9s infinite linear; /* Random rotation effect */
+}
+
+/* Add circles to the ends of the progress bar segments */
+.rotating-progress-bar::before,
+.rotating-progress-bar::after {
+  content: "";
+  position: absolute;
+  width: 10px; /* Diameter of the circle */
+  height: 10px;
+  background-color: #40fdfc;
+  border-radius: 50%; /* Makes it circular */
+}
+
+/* Top segment circle */
+.rotating-progress-bar::before {
+  top: -6px; /* Offset to align with the top border */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Bottom segment circle */
+.rotating-progress-bar::after {
+  bottom: -6px; /* Offset to align with the bottom border */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Keyframes for random clockwise and counterclockwise rotation */
+@keyframes random-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(45deg); /* Clockwise rotation */
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-90deg); /* Counterclockwise rotation */
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(180deg); /* Clockwise again */
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg); /* Counterclockwise back */
+  }
+}

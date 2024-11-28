@@ -1,0 +1,134 @@
+@font-face {
+  font-family: concielianjet;
+  src: url("../assets/fonts/concielianjet.ttf");
+  animation: animate 1s ease-in-out infinite;
+}
+@keyframes glowing-h4 {
+  0% {
+    text-shadow: 0 0 5px #40fdfc, 0 0 10px #40b2b3, 0 0 15px #40b2b3;
+  }
+  50% {
+    text-shadow: 0 0 10px #40fdfc, 0 0 20px #40b2b3, 0 0 25px #40b2b3;
+  }
+  100% {
+    text-shadow: 0 0 5px #40fdfc, 0 0 10px #40b2b3, 0 0 15px #40b2b3;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.bottom-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-width: max-content;
+  height: 90px;
+  margin: 0 auto;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: visible;
+}
+.bottom-banner::before,
+.bottom-banner::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 0.5px;
+  background-color: #40fdfc;
+  box-shadow: 0 0px 5px 1px #40fdfc;
+}
+
+.bottom-banner::before {
+  bottom: 0;
+  left: -100px;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+}
+
+.bottom-banner::after {
+  bottom: 0px;
+  right: -100px;
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
+
+.top-line {
+  position: absolute;
+  height: 0.5px;
+  width: 585px;
+  left: 50%;
+  bottom: 89px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #40fdfc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0px 5px 1px #40fdfc;
+}
+.top-line::before,
+.top-line::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #40fdfc;
+  border-radius: 50%;
+  box-shadow: 0 0px 5px 1px #40fdfc;
+}
+.top-line::before {
+  left: -5px;
+}
+.top-line::after {
+  right: -5px;
+}
+
+.bottom-banner h4 {
+  font-size: 2rem;
+  color: #40fdfc;
+  margin: 0;
+  font-family: concielianjet;
+  animation: glowing-h4 3s infinite ease-in-out;
+}
+
+.bottom-banner .date-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.bottom-banner .date-info .month-year {
+  text-align: right;
+}
+
+.bottom-banner .date-info .day {
+  text-align: right;
+}
+
+@media screen and (max-width: 1200px) {
+  .bottom-banner {
+    font-size: 1.5rem;
+  }
+
+  .bottom-banner .tasks ul li {
+    font-size: 1em;
+  }
+}

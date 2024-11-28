@@ -1,30 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/date.css" />
     <link rel="stylesheet" href="css/body.css" />
+    <link rel="stylesheet" href="css/date.css" />
+    <link rel="stylesheet" href="css/location.css" />
+    <link rel="stylesheet" href="css/center.css" />
+    <script src="js/segmentor.js"></script>
     <title>URad Sensors</title>
   </head>
 
   <body>
-    <!-- Top Banner -->
-    <div class="top-banner">
-      <div class="date-info">
-        <div class="month-year">
-          <h1 id="month"></h1>
-          <h3 id="year"></h3>
-        </div>
-        <div class="day">
-          <h2 id="day"></h1>
-        </div>
-      </div>
-    </div>
-    <div class="bott-banner"></div>
-    </div>
-
+    <!-- Background -->
     <div class="container">
       <video
         src="/assets/video/background.mp4"
@@ -33,27 +21,87 @@
         playsinline
         muted
       ></video>
-
-    <div class="description">
-      <p>
-        Navigate through the intricate network of towering trees, each telling
-        a tale of resilience and growth.
-      </p>
-      <p class="copyright">
-        Video Credit: Be The Observer on
-        <a
-          href="https://www.pexels.com/video/drone-footage-of-mountain-covered-in-trees-6807924/"
-          >pexels.com</a>
-      </p>
     </div>
-  </div>
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+      <div class="bottom-line"></div>
+      <div class="date-info">
+        <div class="month-year">
+          <h1 id="month"></h1>
+          <h3 id="year"></h3>
+        </div>
+        <div class="day">
+          <h2 id="day"></h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Banner -->
+    <div class="bottom-banner">
+      <div class="top-line"></div>
+      <div class="location">
+        <div class="message">
+          <h4 id="message"></h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center with Segmented Circle -->
+    <div class="rotating-progress-bar"></div>
+    <div class="c1">
+      <svg
+        id="circle1"
+        viewBox="0 0 320 320"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      ></svg>
+    </div>
+    <div class="c2">
+      <svg
+        id="circle2"
+        viewBox="0 0 320 320"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      ></svg>
+    </div>
+    <div class="c3">
+      <svg
+        id="circle3"
+        viewBox="0 0 320 320"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      ></svg>
+    </div>
 
     <script>
-      // JavaScript pentru a seta data curentă
       const currentDate = new Date();
-      document.getElementById("month").textContent = currentDate.toLocaleString("default", { month: "long" }).toUpperCase();
+      document.getElementById("month").textContent = currentDate
+        .toLocaleString("default", { month: "long" })
+        .toUpperCase();
       document.getElementById("year").textContent = currentDate.getFullYear();
       document.getElementById("day").textContent = currentDate.getDate();
+      document.getElementById("message").textContent = "URAD21839 - CRAIOVA RO";
+
+      // Initialize Segmented Circle with random progress
+      window.addEventListener("load", function () {
+        // Create the Segmentor object and initialize it with your data
+        const circle1 = new Segmentor("circle1", {
+          totalSegments: 2,
+          filledSegments: 1,
+          offset: 800,
+        });
+        const circle2 = new Segmentor("circle2", {
+          totalSegments: 20,
+          filledSegments: 15,
+          offset: 2,
+        });
+        const circle3 = new Segmentor("circle3", {
+          totalSegments: 5,
+          filledSegments: 1,
+          offset: 20,
+        });
+      });
     </script>
   </body>
 </html>

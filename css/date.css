@@ -53,7 +53,7 @@
 }
 .top-banner {
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   right: 0;
   z-index: 10;
@@ -73,7 +73,7 @@
 .top-banner::after {
   content: "";
   position: absolute;
-  width: 90%;
+  width: 85%;
   height: 0.5px;
   background-color: #40fdfc;
   box-shadow: 0 0px 5px 1px #40fdfc;
@@ -93,12 +93,12 @@
   transform-origin: top right;
 }
 
-.bott-banner {
+.bottom-line {
   position: absolute;
   height: 0.5px;
-  width: 520px;
+  width: 540px;
   left: 50%;
-  top: 89px;
+  top: 100px;
   transform: translate(-50%, -50%);
   z-index: 10;
   background-color: #40fdfc;
@@ -107,8 +107,8 @@
   align-items: center;
   box-shadow: 0 0px 5px 1px #40fdfc;
 }
-.bott-banner::before,
-.bott-banner::after {
+.bottom-line::before,
+.bottom-line::after {
   content: "";
   position: absolute;
   width: 10px;
@@ -117,18 +117,18 @@
   border-radius: 50%;
   box-shadow: 0 0px 5px 1px #40fdfc;
 }
-.bott-banner::before {
+.bottom-line::before {
   left: -5px;
 }
-.bott-banner::after {
+.bottom-line::after {
   right: -5px;
 }
 
 .top-banner h1 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   color: #40fdfc;
   margin: 0;
-  font-family: valorax;
+  font-family: concielianjet;
   animation: glowing-h1 3s infinite ease-in-out;
 }
 .top-banner h2 {
