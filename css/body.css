@@ -11,15 +11,17 @@ body {
   height: 100vh;
   overflow: hidden;
   background: repeating-linear-gradient(
-    0deg, /* Horizontal lines */
-    #0d0d0d 0px,  /* Gray line */
-    #0d0d0d 3px,  /* Thickness of gray line */
-    #000000 2px,  /* Start of black space */
-    #000000 6px   /* Thickness of black space */
-  );
+      0deg,
+      #0d0d0d 0px,
+      #0d0d0d 3px,
+      #000000 2px,
+      #000000 6px
+    );
+  z-index: 1;
 }
 
-.container::before {
+/* Add radial gradient */
+.container::after {
   content: "";
   position: absolute;
   top: 0;
@@ -28,11 +30,31 @@ body {
   bottom: 0;
   background: radial-gradient(
     circle,
-    #0c3631 0%, /* Center color */
-    rgba(0, 0, 0, 0) 70% /* Transparent fade at the edges */
+    #0c3631 0%,
+    rgba(0, 0, 0, 0) 70%
   );
   z-index: 1;
-  pointer-events: none; /* Ensures it doesn't interfere with interactions */
+  pointer-events: none;
+}
+
+/* The twinkling stars (plus signs) */
+.plus {
+  position: absolute;
+  color: #414c4a;
+  font-size: 30px; /* Larger stars */
+  font-family: "Courier New", monospace; /* Ensures the plus is square and proportional */
+  opacity: 0;
+  animation: fade-in-out 3s infinite;
+}
+
+/* Keyframes for fade-in and fade-out animation */
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .description {
