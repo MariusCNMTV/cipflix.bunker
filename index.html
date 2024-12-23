@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/tbanner.css" />
     <link rel="stylesheet" href="css/bbanner.css" />
     <link rel="stylesheet" href="css/rectangles.css" />
+    <link rel="stylesheet" href="css/circles.css" />
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/plus.js"></script>
@@ -16,6 +17,7 @@
     <script src="js/api/date.js"></script>
 
     <script src="js/circles/c1.js"></script>
+    <script src="js/circles/c2.js"></script>
 
     <title>URad Sensors</title>
   </head>
@@ -24,13 +26,12 @@
     <!-- Background -->
     <div class="container"></div>
 
-    <!-- Circle Container -->
-    <div class="circles">
+    <div class="ccontainer">
       <div id="c1"></div>
+      <div id="c2"></div>
     </div>
 
     <!-- Rectangles and Info Section -->
-     
     <div class="rrectangles">
       <!-- TEMP Section -->
       <div class="grid-info-group">
@@ -167,29 +168,29 @@
       <div class="grid-info-group">
         <div class="grid-info-pair">
           <div class="lrectangle" id="lrectangle1">
-            <img src="https://img.icons8.com/ios/100/thermometer.png" alt="Icon 1" class="icon" />
+            <img src="https://img.icons8.com/ios/50/greenhouse-effect.png" alt="Icon 1" class="icon" />
           </div>
           <div class="right-square">
-            <div class="title">TEMP</div>
+            <div class="title">VOC</div>
             <div class="data">
               <div class="row">
                 <span class="label">CURRENT:</span>
-                <span class="value">25°C</span>
+                <span class="value">1.4e+6</span>
               </div>
               <div class="row">
                 <span class="label">MAX:</span>
-                <span class="value">22°C</span>
+                <span class="value">1.5e+6</span>
               </div>
               <div class="row">
                 <span class="label">MIN:</span>
-                <span class="value">3°C</span>
+                <span class="value">500000</span>
               </div>
             </div>
           </div>
         </div>
         <div class="progress-bar">
           <div class="progress">
-            <span class="progress-value-left">39.3%</span>
+            <span class="progress-value-left">45.1%</span>
             <span class="progress-value-right"></span>
           </div>
         </div>
@@ -199,29 +200,29 @@
       <div class="grid-info-group">
         <div class="grid-info-pair">
           <div class="lrectangle" id="lrectangle2">
-            <img src="https://img.icons8.com/ios/100/co2-gauge.png" alt="Icon 2" class="icon" />
+            <img src="https://img.icons8.com/ios/50/particles.png" alt="Icon 2" class="icon" />
           </div>
           <div class="right-square">
-            <div class="title">CO2</div>
+            <div class="title">PM10</div>
             <div class="data">
               <div class="row">
                 <span class="label">CURRENT:</span>
-                <span class="value">400ppm</span>
+                <span class="value">80 µg/m²</span>
               </div>
               <div class="row">
                 <span class="label">MAX:</span>
-                <span class="value">370ppm</span>
+                <span class="value">160 µg/m²</span>
               </div>
               <div class="row">
                 <span class="label">MIN:</span>
-                <span class="value">30ppm</span>
+                <span class="value">30 µg/m²</span>
               </div>
             </div>
           </div>
         </div>
         <div class="progress-bar" data-progress="70">
           <div class="progress">
-            <span class="progress-value-left">72.7%</span>
+            <span class="progress-value-left">32.8%</span>
             <span class="progress-value-right"></span>
           </div>
         </div>
@@ -231,29 +232,29 @@
       <div class="grid-info-group">
         <div class="grid-info-pair">
           <div class="lrectangle" id="lrectangle3">
-            <img src="https://img.icons8.com/ios/100/hygrometer.png" alt="Icon 3" class="icon" />
+            <img src="https://img.icons8.com/ios/50/particulate-matter-10.png" alt="Icon 3" class="icon" />
           </div>
           <div class="right-square">
-            <div class="title">HUMIDITY</div>
+            <div class="title">PM2.5</div>
             <div class="data">
               <div class="row">
                 <span class="label">CURRENT:</span>
-                <span class="value">80%</span>
+                <span class="value">23 µg/m²</span>
               </div>
               <div class="row">
                 <span class="label">MAX:</span>
-                <span class="value">60%</span>
+                <span class="value">27 µg/m²</span>
               </div>
               <div class="row">
                 <span class="label">MIN:</span>
-                <span class="value">20%</span>
+                <span class="value">14 µg/m²</span>
               </div>
             </div>
           </div>
         </div>
         <div class="progress-bar">
           <div class="progress">
-            <span class="progress-value-left">83.1%</span>
+            <span class="progress-value-left">87.9%</span>
             <span class="progress-value-right"></span>
           </div>
         </div>
@@ -263,29 +264,29 @@
       <div class="grid-info-group">
         <div class="grid-info-pair">
           <div class="lrectangle" id="lrectangle4">
-            <img src="https://img.icons8.com/ios/100/atmospheric-pressure.png" alt="Icon 4" class="icon" />
+            <img src="https://img.icons8.com/ios/50/microorganisms.png" alt="Icon 4" class="icon" />
           </div>
           <div class="right-square">
-            <div class="title">PRESSURE</div>
+            <div class="title">PM1</div>
             <div class="data">
               <div class="row">
                 <span class="label">CURRENT:</span>
-                <span class="value">1013 hPa</span>
+                <span class="value">0.1 µg/m²</span>
               </div>
               <div class="row">
                 <span class="label">MAX:</span>
-                <span class="value">1005 hPa</span>
+                <span class="value">1 µg/m²</span>
               </div>
               <div class="row">
                 <span class="label">MIN:</span>
-                <span class="value">8 hPa</span>
+                <span class="value">0.01 µg/m²</span>
               </div>
             </div>
           </div>
         </div>
         <div class="progress-bar">
           <div class="progress">
-            <span class="progress-value-left">53.4%</span>
+            <span class="progress-value-left">13.4%</span>
             <span class="progress-value-right"></span>
           </div>
         </div>

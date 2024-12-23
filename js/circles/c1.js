@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cornerRadius = 2; // Rounded corners for segments
     const padAngle = 0.05; // Spacing between segments
     // Colors
-    const backgroundColor = "rgba(0, 0, 0, 0.1)"; // Cyan, semi-transparent
+    const backgroundColor = "rgba(0, 0, 0, 0)"; // Cyan, semi-transparent
     const borderColor = "#5ca9aa"; // Bright cyan for borders
-    const segmentColors = ["#153f44"]; // Teal for segments
+    const segmentColors = ["rgba(21, 63, 68, 0.4)"]; // Teal for segments
     const numSegments = 24; // Number of segments
     const segmentAngle = (2 * Math.PI) / numSegments; // Angle for each segment
   
