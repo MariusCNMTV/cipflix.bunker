@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/date.css" />
     <link rel="stylesheet" href="css/location.css" />
     <link rel="stylesheet" href="css/center.css" />
+    <link rel="stylesheet" href="css/rectangles.css" />
     <script src="js/segmentor.js"></script>
     <script src="js/plus.js"></script>
     <title>URad Sensors</title>
@@ -15,6 +16,101 @@
   <body>
     <!-- Background -->
     <div class="container"></div>
+
+     <!-- Rectangles and Info Section -->
+  <div class="rectangles">
+    <div class="grid-info-pair">
+      <div class="rectangle" id="rectangle1">
+        <img src="https://img.icons8.com/ios/100/thermometer.png" alt="Icon 1" class="icon" />
+      </div>
+      <div class="right-square">
+        <div class="title">TEMP</div>
+        <div class="data">
+          <div class="row">
+            <span class="label">CURRENT:</span>
+            <span class="value">25°C</span>
+          </div>
+          <div class="row">
+            <span class="label">MAX:</span>
+            <span class="value">22°C</span>
+          </div>
+          <div class="row">
+            <span class="label">MIN:</span>
+            <span class="value">3°C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-info-pair">
+      <div class="rectangle" id="rectangle2">
+        <img src="https://img.icons8.com/ios/100/co2-gauge.png" alt="Icon 2" class="icon" />
+      </div>
+      <div class="right-square">
+        <div class="title">CO2</div>
+        <div class="data">
+          <div class="row">
+            <span class="label">CURRENT:</span>
+            <span class="value">400ppm</span>
+          </div>
+          <div class="row">
+            <span class="label">MAX:</span>
+            <span class="value">370ppm</span>
+          </div>
+          <div class="row">
+            <span class="label">MIN:</span>
+            <span class="value">30ppm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-info-pair">
+      <div class="rectangle" id="rectangle3">
+        <img src="https://img.icons8.com/ios/100/hygrometer.png" alt="Icon 3" class="icon" />
+      </div>
+      <div class="right-square">
+        <div class="title">HUMIDITY</div>
+        <div class="data">
+          <div class="row">
+            <span class="label">CURRENT:</span>
+            <span class="value">80%</span>
+          </div>
+          <div class="row">
+            <span class="label">MAX:</span>
+            <span class="value">60%</span>
+          </div>
+          <div class="row">
+            <span class="label">MIN:</span>
+            <span class="value">20%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-info-pair">
+      <div class="rectangle" id="rectangle4">
+        <img src="https://img.icons8.com/ios/100/atmospheric-pressure.png" alt="Icon 4" class="icon" />
+      </div>
+      <div class="right-square">
+        <div class="title">PRESSURE</div>
+        <div class="data">
+          <div class="row">
+            <span class="label">CURRENT:</span>
+            <span class="value">1013 hPa</span>
+          </div>
+          <div class="row">
+            <span class="label">MAX:</span>
+            <span class="value">1005 hPa</span>
+          </div>
+          <div class="row">
+            <span class="label">MIN:</span>
+            <span class="value">8 hPa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- Top Banner -->
     <div class="top-banner">
