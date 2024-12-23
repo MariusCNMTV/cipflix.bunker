@@ -47,3 +47,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create pluses at random intervals
     setInterval(createPlus, 100); // Faster interval for more pluses
   });
+
