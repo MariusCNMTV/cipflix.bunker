@@ -1,5 +1,16 @@
+  /* Font Import */
+  @font-face {
+    font-family: cyberpunky;
+    src: url("../assets/fonts/Magician Rings.ttf");
+  }
+  
+  @font-face {
+    font-family: valorax;
+    src: url("../assets/fonts/Valorax.otf");
+  }
+
 /* --------------------------------*/
-/*         Grid Background         */
+/*           Rectangles            */
 /* --------------------------------*/
 .rcontainer {
     position: fixed;
@@ -29,7 +40,7 @@
   }
   
   /* Rectangles Container */
-  .rectangles {
+  .rrectangles {
     position: absolute;
     left: 15%; /* Adjust spacing from the left */
     top: 46%;
@@ -40,7 +51,7 @@
   }
   
   /* Grid Squares */
-  .rectangle {
+  .rrectangle {
     width: 120px;
     height: 60px;
     border: 1.6px solid #486866;
@@ -58,17 +69,6 @@
     width: 40px;
     height: 40px;
     filter: invert(72%) sepia(17%) saturate(578%) hue-rotate(140deg) brightness(95%) contrast(89%);
-  }
-  
-  /* Info Squares */
-  @font-face {
-    font-family: cyberpunky;
-    src: url("../assets/fonts/Magician Rings.ttf");
-  }
-  
-  @font-face {
-    font-family: valorax;
-    src: url("../assets/fonts/Valorax.otf");
   }
   
   .right-square {
@@ -152,3 +152,39 @@
     margin-left: auto;
   }
 
+
+  .lcontainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(90deg, #122225 1px, transparent 1px), 
+      linear-gradient(0deg, #122225 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+  }
+
+  .lrectangles {
+    position: absolute;
+    right: 15%;
+    top: 46%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  .lrectangle {
+    width: 120px;
+    height: 60px;
+    border: 1.6px solid #486866;
+    background: 
+      linear-gradient(90deg, #122225 1px, transparent 1px), 
+      linear-gradient(0deg, #122225 1px, transparent 1px);
+    background-size: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
