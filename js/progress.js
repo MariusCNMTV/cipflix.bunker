@@ -14,8 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
           // Calculate the complementary percentage for the right value
           const rightValue = 100 - leftValue;
   
-          // Update the right value element dynamically
-          rightValueElement.textContent = `${rightValue.toFixed(1)}%`;
+          // Hide right value if left value is under 40%
+          if (leftValue < 40) {
+            rightValueElement.textContent = ""; // Clear text content
+          } else {
+            rightValueElement.textContent = `${rightValue.toFixed(1)}%`;
+          }
   
           // Set the progress width dynamically
           progressElement.style.width = `${leftValue}%`;

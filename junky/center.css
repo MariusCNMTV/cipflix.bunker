@@ -32,6 +32,13 @@
     transform: translate(-50%, -50%) rotate(-10deg); /* Counterclockwise back */
   }
 }
+
+#c1 {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
 .c1 {
   position: absolute;
   z-index: 10;

@@ -3,14 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="css/body.css" />
-    <link rel="stylesheet" href="css/date.css" />
-    <link rel="stylesheet" href="css/location.css" />
-    <link rel="stylesheet" href="css/center.css" />
+    <link rel="stylesheet" href="css/tbanner.css" />
+    <link rel="stylesheet" href="css/bbanner.css" />
     <link rel="stylesheet" href="css/rectangles.css" />
-    <script src="js/segmentor.js"></script>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/plus.js"></script>
-    <script src="js/progress.js"></script>
+    <script src="js/progress.js"></script>  
+    
+    <script src="js/api/date.js"></script>
+
+    <script src="js/circles/c1.js"></script>
+
     <title>URad Sensors</title>
   </head>
 
@@ -19,135 +25,136 @@
     <div class="container"></div>
 
     <!-- Rectangles and Info Section -->
-  <div class="rectangles">
-    <!-- TEMP Section -->
-    <div class="grid-info-group">
-      <div class="grid-info-pair">
-        <div class="rectangle" id="rectangle1">
-          <img src="https://img.icons8.com/ios/100/thermometer.png" alt="Icon 1" class="icon" />
-        </div>
-        <div class="right-square">
-          <div class="title">TEMP</div>
-          <div class="data">
-            <div class="row">
-              <span class="label">CURRENT:</span>
-              <span class="value">25°C</span>
-            </div>
-            <div class="row">
-              <span class="label">MAX:</span>
-              <span class="value">22°C</span>
-            </div>
-            <div class="row">
-              <span class="label">MIN:</span>
-              <span class="value">3°C</span>
+    <div class="rectangles">
+      <!-- TEMP Section -->
+      <div class="grid-info-group">
+        <div class="grid-info-pair">
+          <div class="rectangle" id="rectangle1">
+            <img src="https://img.icons8.com/ios/100/thermometer.png" alt="Icon 1" class="icon" />
+          </div>
+          <div class="right-square">
+            <div class="title">TEMP</div>
+            <div class="data">
+              <div class="row">
+                <span class="label">CURRENT:</span>
+                <span class="value">25°C</span>
+              </div>
+              <div class="row">
+                <span class="label">MAX:</span>
+                <span class="value">22°C</span>
+              </div>
+              <div class="row">
+                <span class="label">MIN:</span>
+                <span class="value">3°C</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress">
-          <span class="progress-value-left">30.0%</span>
-          <span class="progress-value-right"></span>
+        <div class="progress-bar">
+          <div class="progress">
+            <span class="progress-value-left">39.3%</span>
+            <span class="progress-value-right"></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- CO2 Section -->
-    <div class="grid-info-group">
-      <div class="grid-info-pair">
-        <div class="rectangle" id="rectangle2">
-          <img src="https://img.icons8.com/ios/100/co2-gauge.png" alt="Icon 2" class="icon" />
-        </div>
-        <div class="right-square">
-          <div class="title">CO2</div>
-          <div class="data">
-            <div class="row">
-              <span class="label">CURRENT:</span>
-              <span class="value">400ppm</span>
-            </div>
-            <div class="row">
-              <span class="label">MAX:</span>
-              <span class="value">370ppm</span>
-            </div>
-            <div class="row">
-              <span class="label">MIN:</span>
-              <span class="value">30ppm</span>
+      <!-- CO2 Section -->
+      <div class="grid-info-group">
+        <div class="grid-info-pair">
+          <div class="rectangle" id="rectangle2">
+            <img src="https://img.icons8.com/ios/100/co2-gauge.png" alt="Icon 2" class="icon" />
+          </div>
+          <div class="right-square">
+            <div class="title">CO2</div>
+            <div class="data">
+              <div class="row">
+                <span class="label">CURRENT:</span>
+                <span class="value">400ppm</span>
+              </div>
+              <div class="row">
+                <span class="label">MAX:</span>
+                <span class="value">370ppm</span>
+              </div>
+              <div class="row">
+                <span class="label">MIN:</span>
+                <span class="value">30ppm</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="progress-bar" data-progress="70">
-        <div class="progress">
-          <span class="progress-value-left">70.0%</span>
-          <span class="progress-value-right"></span>
+        <div class="progress-bar" data-progress="70">
+          <div class="progress">
+            <span class="progress-value-left">72.7%</span>
+            <span class="progress-value-right"></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- HUMIDITY Section -->
-    <div class="grid-info-group">
-      <div class="grid-info-pair">
-        <div class="rectangle" id="rectangle3">
-          <img src="https://img.icons8.com/ios/100/hygrometer.png" alt="Icon 3" class="icon" />
-        </div>
-        <div class="right-square">
-          <div class="title">HUMIDITY</div>
-          <div class="data">
-            <div class="row">
-              <span class="label">CURRENT:</span>
-              <span class="value">80%</span>
-            </div>
-            <div class="row">
-              <span class="label">MAX:</span>
-              <span class="value">60%</span>
-            </div>
-            <div class="row">
-              <span class="label">MIN:</span>
-              <span class="value">20%</span>
+      <!-- HUMIDITY Section -->
+      <div class="grid-info-group">
+        <div class="grid-info-pair">
+          <div class="rectangle" id="rectangle3">
+            <img src="https://img.icons8.com/ios/100/hygrometer.png" alt="Icon 3" class="icon" />
+          </div>
+          <div class="right-square">
+            <div class="title">HUMIDITY</div>
+            <div class="data">
+              <div class="row">
+                <span class="label">CURRENT:</span>
+                <span class="value">80%</span>
+              </div>
+              <div class="row">
+                <span class="label">MAX:</span>
+                <span class="value">60%</span>
+              </div>
+              <div class="row">
+                <span class="label">MIN:</span>
+                <span class="value">20%</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress">
-          <span class="progress-value-left">85.0%</span>
-          <span class="progress-value-right"></span>
+        <div class="progress-bar">
+          <div class="progress">
+            <span class="progress-value-left">83.1%</span>
+            <span class="progress-value-right"></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- PRESSURE Section -->
-    <div class="grid-info-group">
-      <div class="grid-info-pair">
-        <div class="rectangle" id="rectangle4">
-          <img src="https://img.icons8.com/ios/100/atmospheric-pressure.png" alt="Icon 4" class="icon" />
-        </div>
-        <div class="right-square">
-          <div class="title">PRESSURE</div>
-          <div class="data">
-            <div class="row">
-              <span class="label">CURRENT:</span>
-              <span class="value">1013 hPa</span>
-            </div>
-            <div class="row">
-              <span class="label">MAX:</span>
-              <span class="value">1005 hPa</span>
-            </div>
-            <div class="row">
-              <span class="label">MIN:</span>
-              <span class="value">8 hPa</span>
+      <!-- PRESSURE Section -->
+      <div class="grid-info-group">
+        <div class="grid-info-pair">
+          <div class="rectangle" id="rectangle4">
+            <img src="https://img.icons8.com/ios/100/atmospheric-pressure.png" alt="Icon 4" class="icon" />
+          </div>
+          <div class="right-square">
+            <div class="title">PRESSURE</div>
+            <div class="data">
+              <div class="row">
+                <span class="label">CURRENT:</span>
+                <span class="value">1013 hPa</span>
+              </div>
+              <div class="row">
+                <span class="label">MAX:</span>
+                <span class="value">1005 hPa</span>
+              </div>
+              <div class="row">
+                <span class="label">MIN:</span>
+                <span class="value">8 hPa</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress">
-          <span class="progress-value-left">73.0%</span>
-          <span class="progress-value-right"></span>
+        <div class="progress-bar">
+          <div class="progress">
+            <span class="progress-value-left">53.4%</span>
+            <span class="progress-value-right"></span>
+          </div>
         </div>
       </div>
+    
     </div>
-  </div>
 
     <!-- Top Banner -->
     <div class="top-banner">
@@ -174,60 +181,9 @@
     </div>
 
     <!-- Center with Segmented Circle -->
-    <div class="rotating-progress-bar"></div>
-    <div class="c1">
-      <svg
-        id="circle1"
-        viewBox="0 0 320 320"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      ></svg>
-    </div>
-    <div class="c2">
-      <svg
-        id="circle2"
-        viewBox="0 0 320 320"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      ></svg>
-    </div>
-    <div class="c3">
-      <svg
-        id="circle3"
-        viewBox="0 0 320 320"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      ></svg>
-    </div>
+    <div id="c1"></div>
+    <div id="c2"></div>
+    <div id="c3"></div>
 
-    <script>
-      const currentDate = new Date();
-      document.getElementById("month").textContent = currentDate
-        .toLocaleString("default", { month: "long" })
-        .toUpperCase();
-      document.getElementById("year").textContent = currentDate.getFullYear();
-      document.getElementById("day").textContent = currentDate.getDate();
-      document.getElementById("message").textContent = "URAD21839 - CRAIOVA RO";
-
-      // Initialize Segmented Circle with random progress
-      window.addEventListener("load", function () {
-        // Create the Segmentor object and initialize it with your data
-        const circle1 = new Segmentor("circle1", {
-          totalSegments: 2,
-          filledSegments: 1,
-          offset: 800,
-        });
-        const circle2 = new Segmentor("circle2", {
-          totalSegments: 20,
-          filledSegments: 15,
-          offset: 2,
-        });
-        const circle3 = new Segmentor("circle3", {
-          totalSegments: 5,
-          filledSegments: 1,
-          offset: 20,
-        });
-      });
-    </script>
   </body>
 </html>
