@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const width = 600; // Canvas width
-    const height = 600; // Canvas height
+    const width = 1000; // Canvas width
+    const height = 1000; // Canvas height
     const outerRadius = 140; // Outer radius of the circle
     const innerRadius = outerRadius - 16; // Inner radius of the circle
     const numSegments = 24; // Number of segments

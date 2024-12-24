@@ -42,7 +42,7 @@
   /* Rectangles Container */
   .rrectangles {
     position: absolute;
-    left: 15%; /* Adjust spacing from the left */
+    left: 10%; /* Adjust spacing from the left */
     top: 46%;
     transform: translateY(-50%);
     display: flex;
@@ -168,7 +168,7 @@
 
   .lrectangles {
     position: absolute;
-    right: 15%;
+    right: 10%;
     top: 46%;
     transform: translateY(-50%);
     display: flex;

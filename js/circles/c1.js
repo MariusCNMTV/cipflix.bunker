@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const width = 600;
-    const height = 600;
+    const width = 1000;
+    const height = 1000;
     const outerRadius = 240; // Radius of the circle
     const innerRadius = outerRadius - 38; // Inner radius to add background
     const segmentWidth = 15; // Thickness of each segment
