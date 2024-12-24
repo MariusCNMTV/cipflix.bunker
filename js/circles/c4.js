@@ -1,11 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
     const width = 1000; // Canvas width
     const height = 1000; // Canvas height
-    const outerRadius = 280; // Outer radius of the circle
-    const innerRadius = outerRadius - 3; // Inner radius of the circle
+    const innerOuterRadius = 280; // Outer radius of the inner segments
+    const innerInnerRadius = innerOuterRadius - 3; // Inner radius of the inner segments
+    const outerOuterRadius = 295; // Outer radius of the larger segments
+    const outerInnerRadius = outerOuterRadius - 3; // Inner radius of the larger segments
     const segmentColor = "rgb(104, 255, 240)"; // Color for the segments
+    const gapAngle = 0.05; // Gap between segments (in radians)
 
-    // Define the SVG canvas
+    // Segment sizes (in degrees)
+    const innerSegmentSizes = [133, 133]; // Inner segments
+    const outerSegmentSizes = [40, 40]; // Outer segments to fill gaps
+
+    // Convert degrees to radians
+    const innerSegmentSizesRadians = innerSegmentSizes.map((deg) => (deg * Math.PI) / 180);
+    const outerSegmentSizesRadians = outerSegmentSizes.map((deg) => (deg * Math.PI) / 180);
+
+    // Create the SVG canvas
     const svg = d3
         .select("#c4")
         .append("svg")
@@ -14,36 +25,42 @@ document.addEventListener("DOMContentLoaded", () => {
         .append("g")
         .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-    // Define the shape: main circle with two indented segments
+    // Draw inner segments (large, positioned symmetrically)
+    let currentAngle = 0; // Start at angle 0
+    innerSegmentSizesRadians.forEach((segmentAngle, index) => {
+        const startAngle = index === 0 ? currentAngle : currentAngle + Math.PI; // Opposite sides
+        const endAngle = startAngle + segmentAngle;
 
-    // Main circle
-    svg
-        .append("circle")
-        .attr("cx", 0)
-        .attr("cy", 0)
-        .attr("r", outerRadius)
-        .attr("fill", "none")
-        .attr("stroke", segmentColor)
-        .attr("stroke-width", 3);
+        const arc = d3
+            .arc()
+            .innerRadius(innerInnerRadius)
+            .outerRadius(innerOuterRadius)
+            .startAngle(startAngle)
+            .endAngle(endAngle);
 
-    // Define the arc for the indentations
-    const arc = d3.arc()
-        .innerRadius(innerRadius)
-        .outerRadius(outerRadius)
-        .startAngle(-Math.PI / 6) // Adjust start angle of indentation
-        .endAngle(Math.PI / 6); // Adjust end angle of indentation
+        svg.append("path")
+            .attr("d", arc)
+            .attr("fill", segmentColor);
 
-    // Add left indentation
-    svg
-        .append("path")
-        .attr("d", arc)
-        .attr("fill", segmentColor)
-        .attr("transform", `rotate(-90)`);
+        // No increment for symmetric placement
+    });
 
-    // Add right indentation
-    svg
-        .append("path")
-        .attr("d", arc)
-        .attr("fill", segmentColor)
-        .attr("transform", `rotate(90)`);
+    // Draw outer segments to fill spaces between inner segments
+    outerSegmentSizesRadians.forEach((segmentAngle, index) => {
+        const startAngle = index === 0
+            ? innerSegmentSizesRadians[0] + gapAngle
+            : innerSegmentSizesRadians[0] + Math.PI + gapAngle;
+        const endAngle = startAngle + segmentAngle;
+
+        const arc = d3
+            .arc()
+            .innerRadius(outerInnerRadius)
+            .outerRadius(outerOuterRadius)
+            .startAngle(startAngle)
+            .endAngle(endAngle);
+
+        svg.append("path")
+            .attr("d", arc)
+            .attr("fill", segmentColor);
+    });
 });
