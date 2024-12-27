@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const width = 1000; // Canvas width
     const height = 1000; // Canvas height
-    const outerRadius = 140; // Outer radius of the circle
-    const innerRadius = outerRadius - 16; // Inner radius of the circle
+    const outerRadius = 150; // Outer radius of the circle
+    const innerRadius = outerRadius - 15; // Inner radius of the circle
     const numSegments = 24; // Number of segments
     const segmentAngle = (2 * Math.PI) / numSegments; // Angle for each segment
     const gapAngle = 0.1; // Gap between segments

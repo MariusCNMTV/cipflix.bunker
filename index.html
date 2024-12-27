@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="css/bbanner.css" />
     <link rel="stylesheet" href="css/rectangles.css" />
     <link rel="stylesheet" href="css/circles.css" />
+    <link rel="stylesheet" href="css/loading.css" />
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/plus.js"></script>
-    <script src="js/progress.js"></script>  
+    <script src="js/progress.js"></script>      
+    <script src="js/loading.js" defer></script>
     
     <script src="js/api/date.js"></script>
 
@@ -33,6 +35,63 @@
       <div id="c2"></div>
       <div id="c3"></div>
       <div id="c4"></div>
+    </div>
+    
+    <div class="loading-container">
+      <svg width="300" height="300">
+        <circle
+          class="loading-ring loading-ring-bg"
+          r="110"
+          cx="100"
+          cy="100"
+        ></circle>
+        <circle
+          class="loading-ring loading-ring-value"
+          r="110"
+          cx="150"
+          cy="150"
+          style="stroke-dasharray: 502; stroke-dashoffset: 150;"
+        ></circle>
+      </svg>
+      <div class="loading-label">79%</div>
+    </div>
+
+    <div class="loading-container">
+      <svg width="200" height="200">
+        <circle
+          class="loading-ring loading-ring-bg"
+          r="95"
+          cx="100"
+          cy="100"
+        ></circle>
+        <circle
+          class="loading-ring loading-ring-value"
+          r="95"
+          cx="100"
+          cy="100"
+          style="stroke-dasharray: 377; stroke-dashoffset: 177;"
+        ></circle>
+      </svg>
+      <div class="loading-label">53%</div>
+    </div>
+
+    <div class="loading-container">
+      <svg width="200" height="200">
+        <circle
+          class="loading-ring loading-ring-bg"
+          r="80"
+          cx="100"
+          cy="100"
+        ></circle>
+        <circle
+          class="loading-ring loading-ring-value"
+          r="80"
+          cx="100"
+          cy="100"
+          style="stroke-dasharray: 251; stroke-dashoffset: 173;"
+        ></circle>
+      </svg>
+      <div class="loading-label">31%</div>
     </div>
 
     <!-- Rectangles and Info Section -->

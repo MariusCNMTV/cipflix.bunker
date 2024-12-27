@@ -1,0 +1,45 @@
+@font-face {
+  font-family: cyberpunky;
+  src: url("../assets/fonts/Magician Rings.ttf");
+}
+
+@font-face {
+  font-family: valorax;
+  src: url("../assets/fonts/Valorax.otf");
+}
+
+.loading-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.loading-ring {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.loading-ring-bg {
+  stroke: rgba(15, 44, 63, 0.2); /* Mai puțin transparent */
+}
+
+.loading-ring-value {
+  stroke: rgb(104, 255, 240);
+  stroke-opacity: 0.9; /* Mai puțin transparent */
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.loading-label {
+  position: absolute;
+  font-family: valorax;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: right;
+  transform: translate(-120%, -50%); /* Mut textul în stânga barului */
+}
+  
