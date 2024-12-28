@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     const width = 1000; // Canvas width
     const height = 1000; // Canvas height
-    const outerRadius = 270; // Outer radius of the circle
-    const innerRadius = outerRadius - 3; // Inner radius of the circle
+    const outerRadius = 281; // Outer radius of the circle
+    const innerRadius = outerRadius - 8; // Inner radius of the circle
     const segmentColor = "rgb(104, 255, 240)"; // Color for the segments
-    const cornerRadius = 5; // Corner radius for rounding
-    const glowIntensity = 5; // Control the intensity of the glow
+    const cornerRadius = 0; // Corner radius for rounding
+    const glowIntensity = 0; // Control the intensity of the glow
   
     // Segment configuration (start angle, end angle in degrees)
     const segments = [
-      { start: 16.5, end: 66.5 },
-      { start: 113.5, end: 163.5 },
-      { start: 196.5, end: 246.5 },
-      { start: 293.5, end: 343.5 },
+      { start: 26.5, end: 66.5 },
+      { start: 113.5, end: 153.5 },
+      { start: 206.5, end: 246.5 },
+      { start: 293.5, end: 333.5 },
     ];
   
     // Convert degrees to radians for D3
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Create the SVG canvas
     const svg = d3
-      .select("#c5")
+      .select("#c7")
       .append("svg")
       .attr("width", width)
       .attr("height", height)
