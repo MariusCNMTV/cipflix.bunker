@@ -22,7 +22,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  animation: r1 10s infinite linear;
+  animation: r1 7s infinite linear;
 }
 
 #c3 {
@@ -31,7 +31,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  animation: r2 7s infinite linear;
+  animation: r2 5s infinite linear;
 }
 
 #c4 {
@@ -40,41 +40,64 @@
   left: 0;
   width: 100%;
   height: 100%;
-  transform: rotate(-65deg);
+  transform: rotate(-66.5deg);
+}
+
+#c5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#c6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes r1 {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(10deg);
   }
-  25% {
-    transform: rotate(45deg); /* Clockwise rotation */
+  20% {
+    transform: rotate(25deg); /* Smooth clockwise rotation */
   }
-  50% {
-    transform: rotate(-90deg); /* Counterclockwise rotation */
+  40% {
+    transform: rotate(-15deg); /* Gradual counterclockwise */
   }
-  75% {
-    transform: rotate(180deg); /* Clockwise again */
+  60% {
+    transform: rotate(20deg); /* Smooth clockwise again */
+  }
+  80% {
+    transform: rotate(-10deg); /* Gradual counterclockwise */
   }
   100% {
-    transform: rotate(-360deg); /* Counterclockwise back */
+    transform: rotate(10deg); /* Matches the start for smooth looping */
   }
 }
 
 @keyframes r2 {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(5deg);
   }
-  25% {
-    transform: rotate(5deg); /* Clockwise rotation */
+  20% {
+    transform: rotate(20deg); /* Smooth clockwise rotation */
   }
-  50% {
-    transform: rotate(-50deg); /* Counterclockwise rotation */
+  40% {
+    transform: rotate(-10deg); /* Gradual counterclockwise */
   }
-  75% {
-    transform: rotate(10deg); /* Clockwise again */
+  60% {
+    transform: rotate(15deg); /* Smooth clockwise again */
+  }
+  80% {
+    transform: rotate(-5deg); /* Gradual counterclockwise */
   }
   100% {
-    transform: rotate(-180deg); /* Counterclockwise back */
+    transform: rotate(5deg); /* Matches the start for smooth looping */
   }
 }
+

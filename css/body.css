@@ -42,13 +42,14 @@ body {
 /* The twinkling stars (plus signs) */
 .plus {
   position: absolute;
-  color: #414c4a;
+  color: #414c4a; /* Brighter color for glowing effect */
   font-size: 30px; /* Larger stars */
   font-family: "Courier New", monospace; /* Ensures the plus is square and proportional */
+  font-weight: normal; /* Make the plus bold */
+  text-shadow: 0 0 5px #414c4a;
   opacity: 0;
   animation: fade-in-out 3s infinite;
 }
-
 /* Keyframes for fade-in and fade-out animation */
 @keyframes fade-in-out {
   0%, 100% {
