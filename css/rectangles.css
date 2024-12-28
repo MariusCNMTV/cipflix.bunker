@@ -1,17 +1,3 @@
-  /* Font Import */
-  @font-face {
-    font-family: cyberpunky;
-    src: url("../assets/fonts/Magician Rings.ttf");
-  }
-  
-  @font-face {
-    font-family: valorax;
-    src: url("../assets/fonts/Valorax.otf");
-  }
-
-/* --------------------------------*/
-/*           Rectangles            */
-/* --------------------------------*/
 .rcontainer {
     position: fixed;
     top: 0;

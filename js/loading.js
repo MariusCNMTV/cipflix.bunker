@@ -6,7 +6,7 @@ function setProgress(circle, percentage, labelElement) {
     circle.style.strokeDashoffset = `${circumference - (percentage / 100) * circumference}`;
     
     // Actualizează textul
-    labelElement.textContent = `${percentage}%`;
+    labelElement.textContent = ``; //${percentage}x
   }
   
   // Inițializare

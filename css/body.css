@@ -3,8 +3,17 @@ body {
   padding: 0;
   justify-content: center;
   align-items: center;
-  font-family: "cyberpunky", sans-serif;
   overflow: hidden;
+}
+
+@font-face {
+  font-family: dice;
+  src: url("../assets/fonts/dice.otf");
+}
+
+@font-face {
+  font-family: cyberpunky;
+  src: url("../assets/fonts/magician_rings.ttf");
 }
 
 .container {

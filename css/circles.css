@@ -114,22 +114,22 @@
 
 @keyframes r2 {
   0% {
-    transform: rotate(5deg);
+    transform: rotate(-85deg);
   }
   20% {
-    transform: rotate(20deg); /* Smooth clockwise rotation */
+    transform: rotate(-70deg); /* Smooth clockwise rotation */
   }
   40% {
-    transform: rotate(-10deg); /* Gradual counterclockwise */
+    transform: rotate(-100deg); /* Gradual counterclockwise */
   }
   60% {
-    transform: rotate(15deg); /* Smooth clockwise again */
+    transform: rotate(-75deg); /* Smooth clockwise again */
   }
   80% {
-    transform: rotate(-5deg); /* Gradual counterclockwise */
+    transform: rotate(-95deg); /* Gradual counterclockwise */
   }
   100% {
-    transform: rotate(5deg); /* Matches the start for smooth looping */
+    transform: rotate(-85deg); /* Matches the start for smooth looping */
   }
 }
 

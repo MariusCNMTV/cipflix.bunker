@@ -1,56 +1,3 @@
-/* Font import */
-@font-face {
-  font-family: cyberpunky;
-  src: url("../assets/fonts/Magician Rings.ttf");
-}
-@font-face {
-  font-family: valorax;
-  src: url("../assets/fonts/Valorax.otf");
-  animation: animate 1s ease-in-out infinite;
-}
-@keyframes glowing-h1 {
-  0% {
-    text-shadow: 0 0 5px #40fdfc, 0 0 10px #40fdfc, 0 0 15px #40fdfc;
-  }
-  50% {
-    text-shadow: 0 0 10px #40b2b3, 0 0 20px #40b2b3, 0 0 25px #40b2b3;
-  }
-  100% {
-    text-shadow: 0 0 5px #40fdfc, 0 0 10px #40fdfc, 0 0 15px #40fdfc;
-  }
-}
-@keyframes glowing-h2 {
-  0% {
-    text-shadow: 0 0 5px #f76300, 0 0 10px #f76300, 0 0 15px #f76300;
-  }
-  50% {
-    text-shadow: 0 0 10px #f76300, 0 0 20px #f76300, 0 0 25px #f76300;
-  }
-  100% {
-    text-shadow: 0 0 5px #f76300, 0 0 10px #f76300, 0 0 15px #f76300;
-  }
-}
-@keyframes glowing-h3 {
-  0% {
-    text-shadow: 0 0 5px #40b2b3, 0 0 10px #40b2b3, 0 0 15px #40b2b3;
-  }
-  50% {
-    text-shadow: 0 0 10px #40b2b3, 0 0 20px #40b2b3, 0 0 25px #40b2b3;
-  }
-  100% {
-    text-shadow: 0 0 5px #40b2b3, 0 0 10px #40b2b3, 0 0 15px #40b2b3;
-  }
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 .top-banner {
   position: absolute;
   top: 10px;
@@ -128,22 +75,22 @@
   font-size: 2rem;
   color: #40fdfc;
   margin: 0;
-  font-family: concielianjet;
-  animation: glowing-h1 3s infinite ease-in-out;
+  font-family: dice;
+  text-shadow: 0 0 3px #40fdfc, 0 0 5px #40fdfc;
 }
 .top-banner h2 {
   font-size: 5rem;
   color: #f76300;
   margin: 0;
   font-family: cyberpunky;
-  animation: glowing-h2 5s infinite ease-in-out;
+  text-shadow: 0 0 3px #f76300, 0 0 5px #f76300;
 }
 .top-banner h3 {
   font-size: 2 rem;
   color: #40b2b3;
   margin: 0;
   font-family: cyberpunky;
-  animation: glowing-h3 3s infinite ease-in-out;
+  text-shadow: 0 0 3px #40b2b3, 0 0 5px #40b2b3;
 }
 
 .top-banner .date-info {

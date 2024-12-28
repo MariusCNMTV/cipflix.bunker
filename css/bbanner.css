@@ -1,8 +1,3 @@
-@font-face {
-  font-family: concielianjet;
-  src: url("../assets/fonts/concielianjet.ttf");
-  animation: animate 1s ease-in-out infinite;
-}
 @keyframes glowing-h4 {
   0% {
     text-shadow: 0 0 5px #40fdfc, 0 0 10px #40b2b3, 0 0 15px #40b2b3;
@@ -101,7 +96,7 @@
   font-size: 2rem;
   color: #40fdfc;
   margin: 0;
-  font-family: concielianjet;
+  font-family: dice;
   animation: glowing-h4 3s infinite ease-in-out;
 }
 
