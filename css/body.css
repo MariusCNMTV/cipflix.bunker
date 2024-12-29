@@ -1,11 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
 @font-face {
   font-family: dice;
   src: url("../assets/fonts/dice.otf");
@@ -16,11 +8,18 @@ body {
   src: url("../assets/fonts/magician_rings.ttf");
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 .container {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   background: repeating-linear-gradient(
       0deg,
       #0d0d0d 0px,
@@ -28,7 +27,35 @@ body {
       #000000 2px,
       #000000 6px
     );
-  z-index: 1;
+  overflow: hidden;
+}
+
+/* Scanning highlight effect */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 100%; /* Start below the container */
+  left: 0;
+  width: 100%;
+  height: 10%; /* The height of the highlighted area */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 0%,          /* Transparent at the start */
+    rgba(255, 255, 255, 0.01) 50%, /* Brightest in the middle */
+    rgba(0, 0, 0, 0) 100%         /* Transparent at the end */
+  );
+  animation: scan 2s linear infinite; /* Move from bottom to top */
+  pointer-events: none;
+}
+
+/* Animation to move the highlight from bottom to top */
+@keyframes scan {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -8%; /* End above the container */
+  }
 }
 
 /* Add radial gradient */
