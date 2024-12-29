@@ -16,6 +16,20 @@ body {
   overflow: hidden;
 }
 
+.center-container {
+  position: absolute;
+  top: 50.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Dice', sans-serif;
+  text-align: center;
+  z-index: 4;
+}
+.center-text {
+  font-size: 1rem; /* Adjust size as needed */
+  color: rgb(104, 255, 240);
+}
+
 .container {
   position: relative;
   width: 100vw;
