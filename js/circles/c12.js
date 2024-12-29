@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const segmentColor = "rgba(104, 255, 240, 0.9)";
   const gapAngle = 0.17; // Gap between segments in radians
 
-  const segmentSizes = [55]; // Segment sizes in degrees
+  const segmentSizes = [15]; // Segment sizes in degrees
   const segmentSizesRadians = segmentSizes.map((deg) => (deg * Math.PI) / 180);
 
-  const startingAngleDeg = 25; // Starting position in degrees
+  const startingAngleDeg = 35; // Starting position in degrees
   const startingAngleRad = (startingAngleDeg * Math.PI) / 180; // Convert to radians
 
   const svg = d3
-    .select("#c11")
+    .select("#c12")
     .append("svg")
     .attr("width", width)
     .attr("height", height)

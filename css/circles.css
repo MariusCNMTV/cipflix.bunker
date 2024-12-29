@@ -22,7 +22,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  animation: r1 7s infinite linear;
+  animation: r1 4s infinite ease-in-out;
 }
 
 #c3 {
@@ -97,7 +97,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  animation: r2 6s infinite linear;
+  animation: r2 6s infinite ease;
+}
+
+#c12 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: r3 4s infinite ease;
 }
 
 @keyframes r1 {
@@ -141,4 +150,26 @@
     transform: rotate(-85deg); /* Matches the start for smooth looping */
   }
 }
+
+  @keyframes r3 {
+    0% {
+      transform: rotate(-40deg);
+    }
+    20% {
+      transform: rotate(-45deg); /* Smooth clockwise rotation */
+    }
+    40% {
+      transform: rotate(-65deg); /* Gradual counterclockwise */
+    }
+    60% {
+      transform: rotate(-40deg); /* Smooth clockwise again */
+    }
+    80% {
+      transform: rotate(-60deg); /* Gradual counterclockwise */
+    }
+    100% {
+      transform: rotate(-40deg); /* Matches the start for smooth looping */
+    }
+  }
+
 
