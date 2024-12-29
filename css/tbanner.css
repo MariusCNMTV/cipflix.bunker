@@ -5,7 +5,7 @@
   right: 0;
   z-index: 10;
   max-width: max-content;
-  height: 90px;
+  height: 80px;
   margin: 0 auto;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
@@ -16,8 +16,8 @@
   box-sizing: border-box;
   overflow: visible;
 }
-.top-banner::before,
-.top-banner::after {
+.btop-banner::before,
+.btop-banner::after {
   content: "";
   position: absolute;
   width: 85%;
@@ -40,7 +40,7 @@
   transform-origin: top right;
 }
 
-.bottom-line {
+.bbottom-line {
   position: absolute;
   height: 0.5px;
   width: 540px;
@@ -54,8 +54,8 @@
   align-items: center;
   box-shadow: 0 0px 5px 1px #40fdfc;
 }
-.bottom-line::before,
-.bottom-line::after {
+.bbottom-line::before,
+.bbottom-line::after {
   content: "";
   position: absolute;
   width: 10px;
@@ -64,19 +64,19 @@
   border-radius: 50%;
   box-shadow: 0 0px 5px 1px #40fdfc;
 }
-.bottom-line::before {
+.bbottom-line::before {
   left: -5px;
 }
-.bottom-line::after {
+.bbottom-line::after {
   right: -5px;
 }
 
 .top-banner h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #40fdfc;
   margin: 0;
   font-family: dice;
-  text-shadow: 0 0 3px #40fdfc, 0 0 5px #40fdfc;
+  text-shadow: 0 0 2px #40fdfc, 0 0 4px #40fdfc;
 }
 .top-banner h2 {
   font-size: 5rem;

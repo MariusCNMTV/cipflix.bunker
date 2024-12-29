@@ -37,8 +37,8 @@
   box-sizing: border-box;
   overflow: visible;
 }
-.bottom-banner::before,
-.bottom-banner::after {
+.bbottom-banner::before,
+.bbottom-banner::after {
   content: "";
   position: absolute;
   width: 120px;
@@ -47,21 +47,21 @@
   box-shadow: 0 0px 5px 1px #40fdfc;
 }
 
-.bottom-banner::before {
+.bbottom-banner::before {
   bottom: 0;
   left: -100px;
   transform: rotate(-45deg);
   transform-origin: top left;
 }
 
-.bottom-banner::after {
+.bbottom-banner::after {
   bottom: 0px;
   right: -100px;
   transform: rotate(45deg);
   transform-origin: top right;
 }
 
-.top-line {
+.btop-line {
   position: absolute;
   height: 0.5px;
   width: 585px;
@@ -75,8 +75,8 @@
   align-items: center;
   box-shadow: 0 0px 5px 1px #40fdfc;
 }
-.top-line::before,
-.top-line::after {
+.btop-line::before,
+.btop-line::after {
   content: "";
   position: absolute;
   width: 10px;

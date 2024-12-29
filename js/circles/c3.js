@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const width = 1000;
   const height = 1000;
-  const outerRadius = 335;
+  const outerRadius = 350;
   const innerRadius = outerRadius - 3;
   const segmentColor = "rgb(104, 255, 240)";
   const capLength = 20;
