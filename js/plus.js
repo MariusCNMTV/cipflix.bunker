@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".container");
   
     // Define a grid to avoid overlap
-    const gridSize = 50; // Pixels between pluses
+    const gridSize = 40; // Pixels between pluses
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     const columns = Math.floor(screenWidth / gridSize);
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
             grid[row][col] = false;
             plus.remove();
-          }, 6000);
+          }, 8000);
   
           placed = true;
         }
@@ -45,6 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   
     // Create pluses at random intervals
-    setInterval(createPlus, 100); // Faster interval for more pluses
+    setInterval(createPlus, 40); // Faster interval for more pluses
   });
 
