@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const width = 1000; // Canvas width
     const height = 1000; // Canvas height
-    const outerRadius = 35; // Outer radius of the circle
+    const outerRadius = 40; // Outer radius of the circle
     const innerRadius = outerRadius - 2; // Inner radius of the circle
     const segmentColor = "rgba(104, 255, 240, 0.9)"; // Color for the segments
     const cornerRadius = 3; // Corner radius for rounding

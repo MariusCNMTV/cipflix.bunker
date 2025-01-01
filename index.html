@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="css/body.css" />
-    <link rel="stylesheet" href="css/tbanner.css" />
-    <link rel="stylesheet" href="css/bbanner.css" />
+    <link rel="stylesheet" href="css/banners.css" />
     <link rel="stylesheet" href="css/rectangles.css" />
     <link rel="stylesheet" href="css/circles.css" />
-    <link rel="stylesheet" href="css/loading.css" />
 
     <script src="js/d3.v7.min.js"></script>
     <script src="js/plus.js"></script>
     <script src="js/progress.js"></script>      
-    <script src="js/loading.js" defer></script>
     
     <script src="js/api/date.js"></script>
+    <script src="js/api/urad.js"></script>
 
     <script src="js/circles/c1.js"></script>
     <script src="js/circles/c2.js"></script>
@@ -35,10 +33,10 @@
     <script src="js/circles/c15.js"></script>
     <script src="js/circles/c16.js"></script>
     <script src="js/circles/c17.js"></script>
-    <script src="js/circles/c18.js"></script>
+    <script src="js/circles/cc18.js"></script>
     <script src="js/circles/c19.js"></script>
-    <script src="js/circles/c20.js"></script>
-    <script src="js/circles/c21.js"></script>
+    <script src="js/circles/cc20.js"></script>
+    <script src="js/circles/cc21.js"></script>
 
     <title>URad Sensors</title>
   </head>   
@@ -48,8 +46,12 @@
     <div class="container"></div>
 
     <div class="center-container">
-      <div class="center-text">CO2</div>
-      <div class="center-text">43x</div>
+      <div class="overlay-text">
+        <div class="main">
+          <span class="number">478</span>
+          <span class="unit">ppm</span>
+        </div>
+      </div>
     </div>
 
     <div class="ccontainer">
@@ -75,66 +77,9 @@
       <div id="c20"></div>
       <div id="c21"></div>
     </div>
-    
-    <div class="loading-container">
-      <svg width="300" height="300">
-        <circle
-          class="loading-ring loading-ring-bg"
-          r="110"
-          cx="150"
-          cy="150"
-        ></circle>
-        <circle
-          class="loading-ring loading-ring-value"
-          r="110"
-          cx="150"
-          cy="150"
-          style="stroke-dasharray: 502; stroke-dashoffset: 150;"
-        ></circle>
-      </svg>
-      <div class="loading-label">79%</div>
-    </div>
-
-    <div class="loading-container">
-      <svg width="200" height="200">
-        <circle
-          class="loading-ring loading-ring-bg"
-          r="95"
-          cx="100"
-          cy="100"
-        ></circle>
-        <circle
-          class="loading-ring loading-ring-value"
-          r="95"
-          cx="100"
-          cy="100"
-          style="stroke-dasharray: 377; stroke-dashoffset: 177;"
-        ></circle>
-      </svg>
-      <div class="loading-label">53x</div>
-    </div>
-
-    <div class="loading-container">
-      <svg width="200" height="200">
-        <circle
-          class="loading-ring loading-ring-bg"
-          r="80"
-          cx="100"
-          cy="100"
-        ></circle>
-        <circle
-          class="loading-ring loading-ring-value"
-          r="80"
-          cx="100"
-          cy="100"
-          style="stroke-dasharray: 251; stroke-dashoffset: 173;"
-        ></circle>
-      </svg>
-      <div class="loading-label">31%</div>
-    </div>
 
     <!-- Rectangles and Info Section -->
-    <div class="rrectangles">
+    <div class="rrrectangles">
       <!-- TEMP Section -->
       <div class="grid-info-group">
         <div class="grid-info-pair">
@@ -265,7 +210,7 @@
     
     </div>
 
-    <div class="lrectangles">
+    <div class="lrrectangles">
       <!-- TEMP Section -->
       <div class="grid-info-group">
         <div class="grid-info-pair">
@@ -397,7 +342,7 @@
 
     <!-- Top Banner -->
     <div class="top-banner">
-      <div class="bottom-line"></div>
+      <img src="assets/svg/banner.svg" alt="Top Banner Shape" class="svg-top">
       <div class="date-info">
         <div class="month-year">
           <h1 id="month"></h1>
@@ -411,13 +356,8 @@
 
     <!-- Bottom Banner -->
     <div class="bottom-banner">
-      <div class="top-line"></div>
-      <div class="location">
-        <div class="message">
-          <h4 id="message"></h4>
-        </div>
-      </div>
-    
+      <img src="assets/svg/banner.svg" alt="Bottom Banner Shape" class="svg-bottom">
+      <h1 id="radiation"></h1>
     </div>
 
   </body>

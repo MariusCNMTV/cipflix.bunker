@@ -1,63 +1,38 @@
 .top-banner {
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 1;
   max-width: max-content;
-  height: 80px;
+  height: 100px;
   margin: 0 auto;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;
-  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  overflow: visible;
-}
-.btop-banner::before,
-.btop-banner::after {
-  content: "";
-  position: absolute;
-  width: 85%;
-  height: 0.5px;
-  background-color: #40fdfc;
-  box-shadow: 0 0px 5px 1px #40fdfc;
-}
-
-.top-banner::before {
-  top: -100px;
-  left: -300px;
-  transform: rotate(45deg);
-  transform-origin: top left;
-}
-
-.top-banner::after {
-  top: -100px;
-  right: -300px;
-  transform: rotate(-45deg);
-  transform-origin: top right;
 }
 
 .top-banner h1 {
   font-size: 2.5rem;
   color: #40fdfc;
   margin: 0;
+  margin-top: 10px;
   font-family: dice;
   text-shadow: 0 0 1px #40fdfc, 0 0 2px #40fdfc;
 }
 .top-banner h2 {
   font-size: 5rem;
-  color: #f76300;
   margin: 0;
+  margin-top: 10px;
+  color: #f76300;
   font-family: cyberpunky;
   text-shadow: 0 0 1px #f76300, 0 0 2px #f76300;
 }
 .top-banner h3 {
-  font-size: 2 rem;
+  font-size: 2rem;
   color: #40b2b3;
   margin: 0;
+  margin-top: -10px;
   font-family: cyberpunky;
   text-shadow: 0 0 1px #40b2b3, 0 0 1px #40b2b3;
 }
@@ -67,9 +42,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 15px;
-  font-size: 1.5rem;
-  font-weight: 600;
+  gap: 20px;
 }
 
 .top-banner .date-info .month-year {
@@ -80,11 +53,41 @@
   text-align: right;
 }
 
-.svg-banner {
+.svg-top {
   width: auto;
-  height: 100px;
+  height: 110px;
   display: block;
   position: absolute;
-  margin-top: -6px;
 }
 
+.bottom-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  max-width: max-content;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  transform: scaleY(-1);
+}
+
+.svg-bottom {
+  width: auto;
+  height: 110px;
+  display: block;
+  position: absolute;
+}
+
+.bottom-banner h1 {
+  font-size: 2.5rem;
+  color: #40fdfc;
+  margin: 0;
+  font-family: "Dice", sans-serif;
+  text-shadow: 0 0 1px #40fdfc, 0 0 2px #40fdfc;
+  transform: scaleY(-1);
+}

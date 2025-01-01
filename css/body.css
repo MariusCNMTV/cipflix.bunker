@@ -16,19 +16,66 @@ body {
   overflow: hidden;
 }
 
+img {
+  display: block;
+  width: 750px;
+  height: auto;
+}
+
+.co2 {
+  width: 80px;
+  height: auto;
+  margin-top: -140px;
+}
+
 .center-container {
   position: absolute;
-  top: 50.5%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Dice', sans-serif;
   text-align: center;
-  z-index: 4;
+  z-index: 1;
 }
-.center-text {
-  font-size: 1rem; /* Adjust size as needed */
-  color: rgb(104, 255, 240);
+
+.overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: cyberpunky;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  color: #68fff0;
+  text-shadow: 0 0 3px rgb(104, 255, 240);
+  gap: 1rem; 
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: -20px;
+}
+
+.number {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.unit {
+  font-size: 1.25rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-top: -10px;
+}
+
+.label {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
 
 .container {
   position: relative;
@@ -44,35 +91,32 @@ body {
   overflow: hidden;
 }
 
-/* Scanning highlight effect */
 .container::before {
   content: "";
   position: absolute;
-  top: 100%; /* Start below the container */
+  top: 100%;
   left: 0;
   width: 100%;
-  height: 10%; /* The height of the highlighted area */
+  height: 10%;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0) 0%,          /* Transparent at the start */
-    rgba(255, 255, 255, 0.01) 50%, /* Brightest in the middle */
-    rgba(0, 0, 0, 0) 100%         /* Transparent at the end */
+    rgba(0, 0, 0, 0) 0%,          
+    rgba(255, 255, 255, 0.01) 50%, 
+    rgba(0, 0, 0, 0) 100%         
   );
-  animation: scan 2s linear infinite; /* Move from bottom to top */
+  animation: scan 2s linear infinite;
   pointer-events: none;
 }
 
-/* Animation to move the highlight from bottom to top */
 @keyframes scan {
   0% {
     top: 100%;
   }
   100% {
-    top: -8%; /* End above the container */
+    top: -8%;
   }
 }
 
-/* Add radial gradient */
 .container::after {
   content: "";
   position: absolute;
@@ -89,18 +133,17 @@ body {
   pointer-events: none;
 }
 
-/* The twinkling stars (plus signs) */
 .plus {
   position: absolute;
-  color: #414c4a; /* Brighter color for glowing effect */
-  font-size: 30px; /* Larger stars */
-  font-family: "Courier New", monospace; /* Ensures the plus is square and proportional */
-  font-weight: normal; /* Make the plus bold */
+  color: #414c4a; 
+  font-size: 30px;
+  font-family: "Courier New", monospace; 
+  font-weight: normal;
   text-shadow: 0 0 5px #414c4a;
   opacity: 0;
   animation: fade-in-out 3s infinite;
 }
-/* Keyframes for fade-in and fade-out animation */
+
 @keyframes fade-in-out {
   0%, 100% {
     opacity: 0;
