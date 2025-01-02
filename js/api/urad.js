@@ -1,6 +1,19 @@
-// https://run.mocky.io/v3/c708d69f-2533-49d5-af75-77731a8899c5
-
-fetch('https://my-json-server.typicode.com/SuperMarius409/restapi/posts')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
+fetch('http://data.uradmonitor.com/api/v1/devices', {
+  method: 'GET',
+  headers: {
+      'X-User-id': '10519',
+      'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0'
+  }
+})
+.then(response => {
+  if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  return response.json(); // Or response.text() depending on the API response format
+})
+.then(data => {
+  console.log(data); // Process the response data here
+})
+.catch(error => {
+  console.error('Error:', error);
+});

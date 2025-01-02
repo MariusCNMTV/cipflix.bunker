@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
           progressElement.style.width = `${leftValue}%`;
   
           // Log values to verify
-          console.log('Left Value:', leftValue);
-          console.log('Calculated Right Value:', rightValue);
+          //console.log('Left Value:', leftValue);
+          //console.log('Calculated Right Value:', rightValue);
         } else {
           console.error('Invalid leftValue:', leftValue);
         }

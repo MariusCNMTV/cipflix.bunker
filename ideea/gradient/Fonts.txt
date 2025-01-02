@@ -1,0 +1,13 @@
+Fonts used in this design:
+
+Font: Bebas Neue
+Author: Fontfabric
+Url: http://www.fontsquirrel.com/fonts/bebas-neue
+
+Font: Montserrat
+Author: Julieta Ulanovsky
+Url: http://www.fontsquirrel.com/fonts/montserrat
+
+Font: Source Sans Pro
+Author: Adobe
+Url: http://www.fontsquirrel.com/fonts/source-sans-pro

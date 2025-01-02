@@ -16,6 +16,7 @@
     <script src="js/api/date.js"></script>
     <script src="js/api/urad.js"></script>
 
+    <script src="js/circles/c0.js"></script>
     <script src="js/circles/c1.js"></script>
     <script src="js/circles/c2.js"></script>
     <script src="js/circles/c3.js"></script>
@@ -33,10 +34,7 @@
     <script src="js/circles/c15.js"></script>
     <script src="js/circles/c16.js"></script>
     <script src="js/circles/c17.js"></script>
-    <script src="js/circles/cc18.js"></script>
-    <script src="js/circles/c19.js"></script>
-    <script src="js/circles/cc20.js"></script>
-    <script src="js/circles/cc21.js"></script>
+    <script src="js/circles/c18.js"></script>
 
     <title>URad Sensors</title>
   </head>   
@@ -45,16 +43,20 @@
     <!-- Background -->
     <div class="container"></div>
 
-    <div class="center-container">
-      <div class="overlay-text">
-        <div class="main">
-          <span class="number">478</span>
-          <span class="unit">ppm</span>
-        </div>
-      </div>
-    </div>
+    <!-- Middle Section -->
+    <!-- ORANGE = rgb(252, 104, 6) -->
+    <!-- CYAN = rgb(252, 104, 6) -->
 
     <div class="ccontainer">
+      <div class="center-container">
+        <div class="overlay-text">
+          <div class="main">
+            <span class="number">999</span>
+            <span class="unit">ppm</span>
+          </div>
+        </div>
+      </div>
+      <div id="c0"></div>
       <div id="c1"></div>
       <div id="c2"></div>
       <div id="c3"></div>
@@ -73,13 +75,10 @@
       <div id="c16"></div>
       <div id="c17"></div>
       <div id="c18"></div>
-      <div id="c19"></div>
-      <div id="c20"></div>
-      <div id="c21"></div>
     </div>
 
     <!-- Rectangles and Info Section -->
-    <div class="rrrectangles">
+    <div class="rrectangles">
       <!-- TEMP Section -->
       <div class="grid-info-group">
         <div class="grid-info-pair">
@@ -210,7 +209,7 @@
     
     </div>
 
-    <div class="lrrectangles">
+    <div class="lrectangles">
       <!-- TEMP Section -->
       <div class="grid-info-group">
         <div class="grid-info-pair">
