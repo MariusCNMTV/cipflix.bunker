@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { start: 38, end: 48 },
       { start: 114, end: 124 },
       { start: 233, end: 243 },
-      { start: 294, end: 304 },
+      { start: 309, end: 319.5 },
     ];
   
     // Convert degrees to radians for D3
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .append("path")
           .attr("d", arc)
           .attr("fill", segmentColor)
-          .attr("filter", "url(#glow)"); // Apply the glow filter
+          .attr("filter", "url(#glow2)"); // Apply the glow filter
   
         // Calculate positions for connectors at the midpoint radius
         const endX = midpointRadius * Math.cos(endAngle - Math.PI / 2);
@@ -85,21 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
           .attr("cx", endX)
           .attr("cy", endY)
           .attr("r", 3) // Radius of the connector
-          .attr("fill", "rgba(104, 255, 240, 1)")
-          .attr("filter", "url(#glow)");
+          .attr("fill", "rgb(252, 104, 6)")
+          .attr("filter", "url(#glow2)");
   
         svg
           .append("circle")
           .attr("cx", startX)
           .attr("cy", startY)
           .attr("r", 3) // Radius of the connector
-          .attr("fill", "rgba(104, 255, 240, 1)")
-          .attr("filter", "url(#glow)");
+          .attr("fill", "rgb(252, 104, 6)")
+          .attr("filter", "url(#glow2)");
       });
     };
   
     // Draw the segments for both radii
-    drawSegments(228, 226, "rgba(104, 255, 240, 1)"); // Outer set
-    drawSegments(218, 216, "rgba(104, 255, 240, 1)"); // Inner set
+    drawSegments(228, 226, "rgb(252, 104, 6)"); // Outer set
+    drawSegments(218, 216, "rgb(252, 104, 6)"); // Inner set
   });
   
