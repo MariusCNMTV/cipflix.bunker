@@ -75,6 +75,12 @@ img {
   font-weight: 500;
 }
 
+.circle-container {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
+}
 
 .container {
   position: relative;
@@ -181,4 +187,79 @@ img {
 .copyright a {
   color: #fff;
   text-underline-offset: 1px;
+}
+
+.circle-container-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px; /* Match the circle's dimensions */
+  height: 750px;
+  z-index: 1;
+}
+
+.text-wrap-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 750px;
+  height: 750px;
+  margin-left: 400px; /* Shift text-wrap outward */
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.text-wrap-right span {
+  position: absolute;
+  transform: rotate(var(--angle)) translate(350px) rotate(calc(-1 * var(--angle)));
+  transform-origin: center center;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  text-align: left; /* Text flows outward from the edge */
+  display: block; /* Ensures alignment consistency */
+  color: #68fff0;
+  font-family: Dice;
+}
+
+
+.circle-container-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px; /* Match the circle's dimensions */
+  height: 750px;
+  z-index: 1;
+}
+
+.text-wrap-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 750px;
+  height: 750px;
+  margin-left: -400px; /* Shift text-wrap outward to the left */
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  justify-content: right; /* Ensures text alignment is correct */
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.text-wrap-left span {
+  position: absolute;
+  transform: rotate(var(--angle)) translate(-350px) rotate(calc(-1 * var(--angle)));
+  transform-origin: center center;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  text-align: right; /* Ensures text flows outward from the edge */
+  display: block; /* Ensures alignment consistency */
+  color: #68fff0;
+  font-family: Dice;
 }
