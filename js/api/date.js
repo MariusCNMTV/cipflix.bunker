@@ -5,5 +5,4 @@ document.addEventListener("DOMContentLoaded", () => {
           .toUpperCase();
         document.getElementById("year").textContent = currentDate.getFullYear();
         document.getElementById("day").textContent = currentDate.getDate();
-        document.getElementById("radiation").textContent = "URAD21839 - CRAIOVA RO";
 });
