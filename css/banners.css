@@ -110,3 +110,31 @@
   text-shadow: 0 0 1px #40fdfc, 0 0 2px #40fdfc;
   transform: scaleY(-1);
 }
+
+.side-by-side-wrapper {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); 
+  gap: -350px;
+}
+
+#container-9,
+#container-8 {
+  width: 700px;
+  height: 200px;
+  margin: 0;
+  z-index: 3;
+  position: relative;
+}
+
+#container-9 {
+  z-index: 3;
+}
+
+#container-8 {
+  margin-left: -350px; 
+}

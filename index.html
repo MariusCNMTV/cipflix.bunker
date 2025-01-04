@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="css/banners.css" />
     <link rel="stylesheet" href="css/rectangles.css" />
     <link rel="stylesheet" href="css/circles.css" />
+    <link rel="stylesheet" href="css/radiation.css" />
 
     <script src="js/d3.v7.min.js"></script>
+    <script src="js/siriwave.umd.js"></script>
     <script src="js/plus.js"></script>
     <script src="js/progress.js"></script>      
     
@@ -366,7 +368,11 @@
     <!-- Bottom Banner -->
     <div class="bottom-banner">
       <img src="assets/svg/banner.svg" alt="Bottom Banner Shape" class="svg-bottom">
-      <h1 id="radiation"></h1>
+      <div class="side-by-side-wrapper">
+        <div id="container-9"></div>
+        <div id="container-8"></div>
+      </div>
+      <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/nuclear.png" alt="nuclear"/>
     </div>
 
     <div class="circle-container-right">
@@ -415,6 +421,22 @@
         <span style="--angle: -7deg; font-size: 0.65rem;">ENGINEER?</span>
       </div>
     </div>
+
+    <script>
+      var SW9 = new SiriWave({
+        style: "ios9",
+        container: document.getElementById("container-9"),
+        speed: 0.05,
+        amplitude: 0.7,
+      });
+
+      var SW9 = new SiriWave({
+        style: "ios9",
+        container: document.getElementById("container-8"),
+        speed: 0.05,
+        amplitude: 0.7,
+      });
+    </script>
 
   </body>
 </html>
