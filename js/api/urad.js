@@ -1,4 +1,4 @@
-fetch('http://data.uradmonitor.com/api/v1/devices', {
+fetch('https://data.uradmonitor.com/api/v1/devices', {
   method: 'GET',
   headers: {
     'X-User-id': '10519',
