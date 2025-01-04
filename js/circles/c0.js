@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     filter.setAttribute("id", "glow1");
 
     const feGaussianBlur = document.createElementNS("http://www.w3.org/2000/svg", "feGaussianBlur");
-    feGaussianBlur.setAttribute("stdDeviation", "2"); // Amount of blur
+    feGaussianBlur.setAttribute("stdDeviation", "1"); // Amount of blur
     feGaussianBlur.setAttribute("result", "coloredBlur");
 
     const feMerge = document.createElementNS("http://www.w3.org/2000/svg", "feMerge");

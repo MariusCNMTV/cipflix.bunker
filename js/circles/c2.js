@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const numSegments = 24; // Number of segments
   const gapAngle = 0.1; // Gap between segments
   const segmentColor = "rgb(104, 255, 240)"; // Cyan color for segments
-  const glowStrength = 1.2; // Glow strength (range: 0.1 to 2.0, higher is stronger)
+  const glowStrength = 0.5; // Glow strength (range: 0.1 to 2.0, higher is stronger)
 
   let percentage = 0;
   const tiltAngle = 0.14 - (percentage / 100) * 0.14; // Map percentage to tilt angle

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const segmentColor = "#265152", lineColor = "rgb(104, 255, 240)";
     const gapAngle = 0.05, inclinationAngle = 0.06;
     const startAngleOffset1 = 1.517, startAngleOffset2 = 1.567, endAngleFactor = 0.357;
-    const glowIntensity = 5; // Glow intensity for connectors
+    const glowIntensity = 1; // Glow intensity for connectors
   
     const innerSegmentSizes = [133, 133];
     const outerSegmentSizes = [41, 41];
