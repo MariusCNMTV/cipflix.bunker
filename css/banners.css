@@ -111,6 +111,16 @@
   transform: scaleY(-1);
 }
 
+.bottom-banner h3 {
+  font-size: 2rem;
+  color: #40b2b3;
+  margin: 0;
+  font-family: cyberpunky;
+  text-shadow: 0 0 1px #40b2b3, 0 0 1px #40b2b3;
+  transform: scaleY(-1);
+  margin-bottom: -15px;
+}
+
 .side-by-side-wrapper {
   display: flex;
   justify-content: center; 
@@ -137,4 +147,23 @@
 
 #container-8 {
   margin-left: -350px; 
+}
+
+.rad {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  margin-right: 90px;
+  filter: invert(90%) sepia(45%) saturate(6000%) hue-rotate(140deg) brightness(95%) contrast(89%);
+  z-index: 1; /* Ensure the original image stays on top */
+  transform: scaleY(-1);
+}
+
+.bottom-banner .rad-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: left;
+  margin-bottom: 15px;
+  margin-left: 90px;
 }
