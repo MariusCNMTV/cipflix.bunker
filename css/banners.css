@@ -154,8 +154,8 @@
   width: 70px;
   height: 70px;
   margin-right: 90px;
-  filter: invert(63%) sepia(88%) saturate(1380%) hue-rotate(5deg)
-    brightness(102%) contrast(101%);
+  filter: invert(40%) sepia(60%) saturate(1400%) hue-rotate(5deg)
+    brightness(100%) contrast(100%);
   z-index: 1; /* Ensure the original image stays on top */
   transform: scaleY(-1);
 }
