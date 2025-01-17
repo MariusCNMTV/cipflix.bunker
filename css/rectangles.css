@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   gap: 10px; /* Space between grid and info squares */
-  margin-top: 100px; /* Space between rows */
+  margin-top: 70px; /* Space between rows */
 }
 
 .grid-info-group {
@@ -27,7 +27,7 @@
 .rrectangles {
   position: absolute;
   left: 4%; /* Adjust spacing from the left */
-  top: 44%;
+  top: 46%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -37,8 +37,8 @@
 /* Grid Squares */
 .rrectangle {
   position: relative; /* Asigură poziționarea pseudo-elementului ::before */
-  width: 150px;
-  height: 80px;
+  width: 140px;
+  height: 95px;
   border: 1.6px solid #486866;
   background: linear-gradient(90deg, #122225 1px, transparent 1px),
     linear-gradient(0deg, #122225 1px, transparent 1px);
@@ -75,8 +75,8 @@
 }
 
 .right-square {
-  width: 150px;
-  height: 80px;
+  width: 160px;
+  height: 90px;
   background-color: rgba(77, 115, 106, 0.25);
   display: flex;
   flex-direction: column;
@@ -89,7 +89,7 @@
 
 .right-square .title {
   font-family: cyberpunky, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   color: #61a398;
   border: 1px solid #61a398;
   padding: 0 30px;
@@ -109,12 +109,12 @@
 }
 
 .right-square .label {
-  font-size: 13px;
+  font-size: 15px;
   color: #f06e1b; /* Reddish for labels */
 }
 
 .right-square .value {
-  font-size: 13px;
+  font-size: 15px;
   color: #61a398; /* Cyan-ish for values */
 }
 
@@ -143,14 +143,14 @@
 .progress-value-left {
   color: rgba(0, 0, 0, 0.3); /* Dark text for better contrast */
   font-family: cyberpunky, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   z-index: 2; /* Ensure text is above the progress bar */
 }
 
 .progress-value-right {
   color: rgba(0, 0, 0, 0.3); /* Dark text for better contrast */
   font-family: cyberpunky, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   z-index: 2; /* Ensure text is above the progress bar */
   margin-left: auto;
 }
@@ -170,7 +170,7 @@
 .lrectangles {
   position: absolute;
   right: 4%;
-  top: 44%;
+  top: 46%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -179,8 +179,8 @@
 
 .lrectangle {
   position: relative;
-  width: 150px;
-  height: 80px;
+  width: 140px;
+  height: 95px;
   border: 1.6px solid #486866;
   background: linear-gradient(90deg, #122225 1px, transparent 1px),
     linear-gradient(0deg, #122225 1px, transparent 1px);
