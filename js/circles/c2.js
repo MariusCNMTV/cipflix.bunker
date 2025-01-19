@@ -6,9 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let percentageR = 0;
   let percentageB = 0;
   let rotationAngle = -85;
-  let startMorphing = false; 
-  let morphingDone = false; 
+  let startMorphing = false;
+  let morphingDone = false;
   let isIdleRotationActive = true;
+  let isInFastSpin = false;
+  let fastSpinDuration = 5000;
+  let fastSpinStartTime = null;
 
   const svg = d3
     .select("#c2")
@@ -66,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const rotateIdle = () => {
-    if (!isIdleRotationActive) return;
+    if (!isIdleRotationActive || isInFastSpin) return;
 
     rotationAngle += Math.sin(Date.now() * 0.005) * 0.5;
     d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
@@ -98,9 +101,49 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const fastSpin = () => {
+    if (!isInFastSpin) {
+      isInFastSpin = true;
+      fastSpinStartTime = Date.now();
+    }
+
     rotationAngle += 2;
     d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
-    requestAnimationFrame(fastSpin);
+
+    const elapsed = Date.now() - fastSpinStartTime;
+    if (elapsed >= fastSpinDuration) {
+      smoothTransitionBackToIdle();
+    } else {
+      requestAnimationFrame(fastSpin);
+    }
+  };
+
+  const smoothTransitionBackToIdle = () => {
+    let transitionStartTime = Date.now();
+    let transitionDuration = 2000;
+
+    const transitionStep = () => {
+      const elapsed = Date.now() - transitionStartTime;
+      if (elapsed < transitionDuration) {
+        const progress = elapsed / transitionDuration;
+        rotationAngle -= 0.5 * progress;
+        d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+
+        percentageR -= 1.5 * progress;
+        percentageB -= 2 * progress;
+        drawShape(percentageR, percentageB);
+
+        requestAnimationFrame(transitionStep);
+      } else {
+        isInFastSpin = false;
+        isIdleRotationActive = true;
+        percentageR = 0;
+        percentageB = 0;
+        drawShape(percentageR, percentageB);
+        rotateIdle();
+      }
+    };
+
+    transitionStep();
   };
 
   drawShape(0, 0);
@@ -109,5 +152,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     startMorphing = true;
     animate();
-  }, 2000); // Start morphing after 2 seconds
+  }, 2000);
 });
