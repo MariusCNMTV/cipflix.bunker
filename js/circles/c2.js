@@ -1,17 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const width = 1000; // Canvas width
-  const height = 1000; // Canvas height
-  const numSegments = 24; // Number of segments
-  const gapAngle = 0.1; // Gap between segments
-  const segmentColor = "rgb(104, 255, 240)"; // Cyan color for segments
-  const glowStrength = 0.5; // Glow strength (range: 0.1 to 2.0, higher is stronger)
+  const width = 1000;
+  const height = 1000;
+  const numSegments = 24;
+  const gapAngle = 0.1;
+  let percentageR = 0;
+  let percentageB = 0;
+  let rotationAngle = -85;
+  let startMorphing = false; 
+  let morphingDone = false; 
+  let isIdleRotationActive = true;
 
-  let percentage = 0;
-  const tiltAngle = 0.14 - (percentage / 100) * 0.14; // Map percentage to tilt angle
-  const outerRadius = 150 + (percentage / 100) * (180 - 150); // Map percentage to outer radius
-  const innerRadius = outerRadius - 15; // Adjust inner radius accordingly
-
-  // Append SVG for Circle 2
   const svg = d3
     .select("#c2")
     .append("svg")
@@ -20,64 +18,96 @@ document.addEventListener("DOMContentLoaded", () => {
     .append("g")
     .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-  // Add a glow filter
   const defs = svg.append("defs");
-  const filter = defs
-    .append("filter")
-    .attr("id", "glow")
+  const filter = defs.append("filter")
+    .attr("id", "glowInner")
     .attr("filterUnits", "userSpaceOnUse")
-    .attr("x", -outerRadius * 2)
-    .attr("y", -outerRadius * 2)
-    .attr("width", outerRadius * 4)
-    .attr("height", outerRadius * 4);
+    .attr("x", -200)
+    .attr("y", -200)
+    .attr("width", 400)
+    .attr("height", 400);
 
-  filter
-    .append("feGaussianBlur")
-    .attr("stdDeviation", glowStrength * 3) // Glow spread, scaled by strength
-    .attr("result", "coloredBlur");
+  filter.append("feGaussianBlur").attr("stdDeviation", 10).attr("result", "coloredBlur");
+  filter.append("feFlood").attr("flood-color", "rgb(104, 255, 240)").attr("flood-opacity", 1).attr("result", "glowInner");
+  filter.append("feComposite").attr("in", "glowInner").attr("in2", "coloredBlur").attr("operator", "in").attr("result", "glowInner");
+  filter.append("feMerge").selectAll("feMergeNode").data(["glowInner", "SourceGraphic"]).enter().append("feMergeNode").attr("in", (d) => d);
 
-  filter
-    .append("feFlood")
-    .attr("flood-color", "rgb(104, 255, 240)") // Glow color
-    .attr("flood-opacity", glowStrength * 0.6) // Glow opacity, scaled by strength
-    .attr("result", "glowColor");
+  const drawShape = (pR, pB) => {
+    svg.selectAll("*").remove();
 
-  filter
-    .append("feComposite")
-    .attr("in", "glowColor")
-    .attr("in2", "coloredBlur")
-    .attr("operator", "in")
-    .attr("result", "glow");
+    const tiltAngle = 0.14 - (pR / 100) * 0.14;
+    const outerRadius = 150 + (pB / 100) * 30;
+    const innerRadius = outerRadius - (15 + (pB / 100) * 30);
 
-  filter
-    .append("feMerge")
-    .selectAll("feMergeNode")
-    .data(["glow", "SourceGraphic"]) // Merge glow and original graphic
-    .enter()
-    .append("feMergeNode")
-    .attr("in", (d) => d);
+    const segmentAngle = (2 * Math.PI) / numSegments;
+    for (let i = 0; i < numSegments; i++) {
+      const startAngle = i * segmentAngle + gapAngle / 2;
+      const endAngle = (i + 1) * segmentAngle - gapAngle / 2;
 
-  // Create tilted parallelogram segments
-  const segmentAngle = (2 * Math.PI) / numSegments; // Angle for each segment
-  for (let i = 0; i < numSegments; i++) {
-    const startAngle = i * segmentAngle + gapAngle / 2;
-    const endAngle = (i + 1) * segmentAngle - gapAngle / 2;
+      const x1 = Math.cos(startAngle) * innerRadius;
+      const y1 = Math.sin(startAngle) * innerRadius;
+      const x2 = Math.cos(startAngle + tiltAngle) * outerRadius;
+      const y2 = Math.sin(startAngle + tiltAngle) * outerRadius;
+      const x3 = Math.cos(endAngle + tiltAngle) * outerRadius;
+      const y3 = Math.sin(endAngle + tiltAngle) * outerRadius;
+      const x4 = Math.cos(endAngle) * innerRadius;
+      const y4 = Math.sin(endAngle) * innerRadius;
 
-    // Calculate points for the parallelogram
-    const x1 = Math.cos(startAngle) * innerRadius;
-    const y1 = Math.sin(startAngle) * innerRadius;
-    const x2 = Math.cos(startAngle + tiltAngle) * outerRadius;
-    const y2 = Math.sin(startAngle + tiltAngle) * outerRadius;
-    const x3 = Math.cos(endAngle + tiltAngle) * outerRadius;
-    const y3 = Math.sin(endAngle + tiltAngle) * outerRadius;
-    const x4 = Math.cos(endAngle) * innerRadius;
-    const y4 = Math.sin(endAngle) * innerRadius;
+      const r = Math.round(104 + (252 - 104) * (pB / 100));
+      const g = Math.round(255 + (104 - 255) * (pB / 100));
+      const b = Math.round(240 + (6 - 240) * (pB / 100));
 
-    // Create a polygon for the parallelogram
-    svg
-      .append("polygon")
-      .attr("points", `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`)
-      .attr("fill", segmentColor)
-      .attr("filter", "url(#glow)"); // Apply the glow filter
-  }
+      svg.append("polygon")
+        .attr("points", `${x1},${y1} ${x2},${y2} ${x3},${y3} ${x4},${y4}`)
+        .attr("fill", `rgb(${r}, ${g}, ${b})`)
+        .attr("filter", "url(#glowInner)")
+        .attr("stroke-width", pB / 10);
+    }
+  };
+
+  const rotateIdle = () => {
+    if (!isIdleRotationActive) return;
+
+    rotationAngle += Math.sin(Date.now() * 0.005) * 0.5;
+    d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+    requestAnimationFrame(rotateIdle);
+  };
+
+  const animate = () => {
+    if (!startMorphing) return;
+
+    if (percentageR < 100) {
+      percentageR += 1.5;
+    } else if (percentageB < 100) {
+      percentageB += 2;
+    } else if (percentageB > 0) {
+      percentageB -= 1;
+    }
+
+    drawShape(percentageR, percentageB);
+
+    if (percentageR >= 100 && percentageB >= 100) {
+      morphingDone = true;
+      startMorphing = false;
+      isIdleRotationActive = false;
+      fastSpin();
+      return;
+    }
+
+    requestAnimationFrame(animate);
+  };
+
+  const fastSpin = () => {
+    rotationAngle += 2;
+    d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+    requestAnimationFrame(fastSpin);
+  };
+
+  drawShape(0, 0);
+  rotateIdle();
+
+  setTimeout(() => {
+    startMorphing = true;
+    animate();
+  }, 2000); // Start morphing after 2 seconds
 });
