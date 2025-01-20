@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
   addBlueBackgroundToContainer();
   const width = 1000;
   const height = 1000;
-  const numSegments = 24;
+  const numSegments = 25;
   const gapAngle = 0.1;
   let percentageR = 0;
   let percentageB = 0;
-  let rotationAngle = -85;
+  let rotationAngle = -100;
   let fastSpinDuration = 5000;
   let fastSpinStartTime = null;
 
@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const animate = () => {
     if (percentageR < 100) {
-      percentageR += 1.5;
+      percentageR += 3;
     } else if (percentageB < 100) {
-      percentageB += 2;
+      percentageB += 3;
     } else if (percentageB > 0) {
-      percentageB -= 1;
+      percentageB -= 3;
     }
 
     drawShape(percentageR, percentageB);
@@ -124,11 +124,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const elapsed = Date.now() - transitionStartTime;
       if (elapsed < transitionDuration) {
         const progress = elapsed / transitionDuration;
-        rotationAngle -= 0.5 * progress;
+        rotationAngle -= 1 * progress;
         d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
 
-        percentageR -= 1.5 * progress;
-        percentageB -= 2 * progress;
+        percentageR -= 3 * progress;
+        percentageB -= 3 * progress;
         drawShape(percentageR, percentageB);
 
         requestAnimationFrame(transitionStep);

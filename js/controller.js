@@ -51,7 +51,7 @@ function createNewBackground(color) {
 
   if (color === "orange") {
     afterElement.style.background =
-      "radial-gradient(circle, rgba(252, 104, 6, 0.7) 5%, transparent 55%)";
+      "radial-gradient(circle, rgba(252, 104, 6, 0.7) 0%, transparent 40%)";
     afterElement.style.maskImage = "radial-gradient(circle, transparent 0%, black 25%)";
   } else if (color === "blue") {
     afterElement.style.background =
