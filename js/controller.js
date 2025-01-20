@@ -49,10 +49,10 @@ function createNewBackground(color) {
   afterElement.style.bottom = "0";
   
   if (color === "orange") {
-    afterElement.style.background = "radial-gradient(circle, rgba(252, 104, 6, 0.7) 5%, rgba(0, 0, 0, 0) 55%)";
+    afterElement.style.background = "radial-gradient(circle, rgba(252, 104, 6, 0.7) 5%, transparent 55%)";
     afterElement.style.maskImage = "radial-gradient(circle, transparent 0%, black 25%)";
   } else if (color === "blue") {
-    afterElement.style.background = "radial-gradient(circle, rgba(0, 255, 225, 0.25) 0%, rgba(0, 0, 0, 0) 70%)";
+    afterElement.style.background = "radial-gradient(circle, rgba(0, 255, 225, 0.25) 0%, transparent 70%)";
   }
 
   afterElement.style.opacity = "0";
