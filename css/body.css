@@ -122,22 +122,6 @@ img {
   }
 }
 
-.container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle,
-    #0c3631 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
 .plus {
   position: absolute;
   color: #414c4a; 

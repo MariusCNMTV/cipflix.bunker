@@ -1,4 +1,10 @@
+let startMorphing = false;
+let isInFastSpin = false;
+let morphingDone = false;
+let isIdleRotationActive = true;
+
 document.addEventListener("DOMContentLoaded", () => {
+  addBlueBackgroundToContainer();
   const width = 1000;
   const height = 1000;
   const numSegments = 24;
@@ -6,10 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let percentageR = 0;
   let percentageB = 0;
   let rotationAngle = -85;
-  let startMorphing = false;
-  let morphingDone = false;
-  let isIdleRotationActive = true;
-  let isInFastSpin = false;
   let fastSpinDuration = 5000;
   let fastSpinStartTime = null;
 
@@ -77,8 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const animate = () => {
-    if (!startMorphing) return;
-
     if (percentageR < 100) {
       percentageR += 1.5;
     } else if (percentageB < 100) {
@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (percentageR >= 100 && percentageB >= 100) {
       morphingDone = true;
       startMorphing = false;
-      isIdleRotationActive = false;
       fastSpin();
       return;
     }
@@ -139,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         percentageR = 0;
         percentageB = 0;
         drawShape(percentageR, percentageB);
+        addBlueBackgroundToContainer();
         rotateIdle();
       }
     };
@@ -146,11 +146,15 @@ document.addEventListener("DOMContentLoaded", () => {
     transitionStep();
   };
 
+  const startAnimationLoop = () => {
+    if (startMorphing) {
+      animate();
+    } else {
+      requestAnimationFrame(startAnimationLoop);
+    }
+  };
+
+  startAnimationLoop();
   drawShape(0, 0);
   rotateIdle();
-
-  setTimeout(() => {
-    startMorphing = true;
-    animate();
-  }, 2000);
 });
