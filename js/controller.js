@@ -1,24 +1,25 @@
 let currentBackground = null;
 
-window.startMorphingAnimation = function() {
+window.startMorphingAnimation = function () {
   setTimeout(() => {
     startMorphing = true;
     addOrangeBackgroundToContainer();
-  }, 5000);
+  }, 3000);
 };
 
 function addOrangeBackgroundToContainer() {
   const container = document.querySelector(".container");
   if (container) {
     if (currentBackground) {
-      // Fade out the current background first
       currentBackground.style.opacity = "0";
       setTimeout(() => {
         currentBackground.remove();
-        createNewBackground("orange"); // Create the new orange background after the fade-out
-      }, 1000); // Wait for the fade-out transition to complete
+        createNewBackground("orange");
+        changeTextColorToOrange();
+      }, 1000);
+      
     } else {
-      createNewBackground("orange"); // Directly create the orange background if no previous background exists
+      createNewBackground("orange");
     }
   }
 }
@@ -26,15 +27,15 @@ function addOrangeBackgroundToContainer() {
 function addBlueBackgroundToContainer() {
   const container = document.querySelector(".container");
   if (container) {
+    changeTextColorToBlue();
     if (currentBackground) {
-      // Fade out the current background first
       currentBackground.style.opacity = "0";
       setTimeout(() => {
         currentBackground.remove();
-        createNewBackground("blue"); // Create the new blue background after the fade-out
-      }, 1000); // Wait for the fade-out transition to complete
+        createNewBackground("blue");
+      }, 1000);
     } else {
-      createNewBackground("blue"); // Directly create the blue background if no previous background exists
+      createNewBackground("blue");
     }
   }
 }
@@ -47,12 +48,14 @@ function createNewBackground(color) {
   afterElement.style.left = "0";
   afterElement.style.right = "0";
   afterElement.style.bottom = "0";
-  
+
   if (color === "orange") {
-    afterElement.style.background = "radial-gradient(circle, rgba(252, 104, 6, 0.7) 5%, transparent 55%)";
+    afterElement.style.background =
+      "radial-gradient(circle, rgba(252, 104, 6, 0.7) 5%, transparent 55%)";
     afterElement.style.maskImage = "radial-gradient(circle, transparent 0%, black 25%)";
   } else if (color === "blue") {
-    afterElement.style.background = "radial-gradient(circle, rgba(0, 255, 225, 0.25) 0%, transparent 70%)";
+    afterElement.style.background =
+      "radial-gradient(circle, rgba(0, 255, 225, 0.25) 0%, transparent 70%)";
   }
 
   afterElement.style.opacity = "0";
@@ -63,6 +66,24 @@ function createNewBackground(color) {
   setTimeout(() => {
     afterElement.style.opacity = "1";
   }, 60);
+}
+
+function changeTextColorToOrange() {
+  const overlayTextElements = document.querySelectorAll(".overlay-text");
+  overlayTextElements.forEach((element) => {
+    element.style.transition = "color 1s ease-in-out, text-shadow 1s ease-in-out";
+    element.style.color = "#FC6806";
+    element.style.textShadow = "0 0 10px rgba(252, 104, 6, 1)";
+  });
+}
+
+function changeTextColorToBlue() {
+  const overlayTextElements = document.querySelectorAll(".overlay-text");
+  overlayTextElements.forEach((element) => {
+    element.style.transition = "color 1s ease-in-out, text-shadow 1s ease-in-out";
+    element.style.color = "#68fff0";
+    element.style.textShadow = "0 0 1px rgba(104, 255, 240, 1)";
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
