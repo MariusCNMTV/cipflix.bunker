@@ -18,11 +18,12 @@ function setBlueBackgroundOnRefresh() {
 }
 
 function addOrangeBackgroundToContainer() {
-  if (!startMorphing) {
+  if (!startMorphing && !isInFastSpin) {
     startMorphing = true;
     isInFastSpin = true;
     isIdleRotationActive = false;
     fastSpin();
+
     const container = document.querySelector(".container");
     if (container) {
       if (currentBackground) {

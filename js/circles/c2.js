@@ -111,43 +111,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const startPercentageB = percentageB;
     const startRotationAngle = ((rotationAngle % 360) + 360) % 360;
     const idleRotationAngle = 0;
-
+    
     isInFastSpin = false;
     isIdleRotationActive = false;
-
+    startMorphing = false;
+  
     const easeOut = (t) => t * (2 - t);
-
+  
     const transitionStep = (timestamp) => {
-        if (!transitionStartTime) transitionStartTime = timestamp;
-        const elapsed = timestamp - transitionStartTime;
-
-        if (elapsed < transitionDuration) {
-            const progress = elapsed / transitionDuration;
-            const easedProgress = easeOut(progress);
-
-            rotationAngle = startRotationAngle * (1 - easedProgress);
-            percentageR = startPercentageR * (1 - easedProgress);
-            percentageB = startPercentageB * (1 - easedProgress);
-
-            d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
-            drawShape(percentageR, percentageB);
-
-            requestAnimationFrame(transitionStep);
-        } else {
-            rotationAngle = idleRotationAngle;
-            percentageR = 0;
-            percentageB = 0;
-            isIdleRotationActive = true;
-            isInFastSpin = false;
-            startMorphing = false;
-
-            drawShape(percentageR, percentageB);
-            rotateIdle(performance.now());
-        }
+      if (!transitionStartTime) transitionStartTime = timestamp;
+      const elapsed = timestamp - transitionStartTime;
+  
+      if (elapsed < transitionDuration) {
+        const progress = elapsed / transitionDuration;
+        const easedProgress = easeOut(progress);
+  
+        rotationAngle = startRotationAngle * (1 - easedProgress);
+        percentageR = startPercentageR * (1 - easedProgress);
+        percentageB = startPercentageB * (1 - easedProgress);
+  
+        d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+        drawShape(percentageR, percentageB);
+  
+        requestAnimationFrame(transitionStep);
+      } else {
+        rotationAngle = idleRotationAngle;
+        isIdleRotationActive = true;
+        startMorphing = false;
+        drawShape(0, 0);
+        rotateIdle(performance.now());
+      }
     };
-
-      requestAnimationFrame(transitionStep);
-    };
+  
+    requestAnimationFrame(transitionStep);
+  };
+  
 
   const startAnimationLoop = () => {
     if (startMorphing) {
@@ -156,9 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(startAnimationLoop);
     }
   };
-  
   window.smoothTransitionBackToIdle = smoothTransitionBackToIdle;
   window.fastSpin = fastSpin;
+  
 
   startAnimationLoop();
   drawShape(0, 0);
