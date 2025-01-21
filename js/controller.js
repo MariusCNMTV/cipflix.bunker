@@ -20,6 +20,9 @@ function setBlueBackgroundOnRefresh() {
 function addOrangeBackgroundToContainer() {
   if (!startMorphing) {
     startMorphing = true;
+    isInFastSpin = true;
+    isIdleRotationActive = false;
+    fastSpin();
     const container = document.querySelector(".container");
     if (container) {
       if (currentBackground) {
@@ -39,23 +42,18 @@ function addOrangeBackgroundToContainer() {
 
 function addBlueBackgroundToContainer() {
   if (startMorphing) {
-    startMorphing = false;
-    morphingDone = true;
-    smoothTransitionBackToIdle();
+    smoothTransitionBackToIdle(); 
   }
-  const container = document.querySelector(".container");
-  if (container) {
-    if (currentBackground) {
+  if (currentBackground) {
       currentBackground.style.opacity = "0";
       setTimeout(() => {
-        currentBackground.remove();
-        createNewBackground("blue");
-        changeTextColorToBlue();
-      }, 1000); // asigură-te că tranziția se termină înainte de a face alte modificări
-    } else {
+          currentBackground.remove();
+          createNewBackground("blue");
+          changeTextColorToBlue();
+      }, 1000);
+  } else {
       createNewBackground("blue");
       changeTextColorToBlue();
-    }
   }
 }
 

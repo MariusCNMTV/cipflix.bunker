@@ -1,6 +1,5 @@
 let startMorphing = false;
 let isInFastSpin = false;
-let morphingDone = false;
 let isIdleRotationActive = true;
 let lastTimestamp = 0;
 
@@ -12,8 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let percentageR = 0;
   let percentageB = 0;
   let rotationAngle = -100;
-  let fastSpinDuration = 5000;
-  let fastSpinStartTime = null;
 
   const svg = d3
     .select("#c2")
@@ -83,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(rotateIdle);
   };
 
-  const animate = (timestamp) => {
+  const animate = () => {
     if (percentageR < 100) {
       percentageR += 3;
     } else if (percentageB < 100) {
@@ -94,65 +91,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
     drawShape(percentageR, percentageB);
 
-    if (percentageR >= 100 && percentageB >= 100) {
-      morphingDone = true;
-      fastSpin();
-      return;
-    }
-
     requestAnimationFrame(animate);
   };
 
   const fastSpin = () => {
-    if (!isInFastSpin) return;
+    if (!startMorphing || !isInFastSpin) return;
+    
     rotationAngle += 2;
+    if (rotationAngle >= 360) rotationAngle -= 360;
+
     d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
     requestAnimationFrame(fastSpin);
   };
 
   const smoothTransitionBackToIdle = () => {
-    let transitionStartTime = Date.now();
-    let transitionDuration = 4000;
+    let transitionStartTime = null;
+    const transitionDuration = 4000;
     const startPercentageR = percentageR;
     const startPercentageB = percentageB;
-    const startRotationAngle = rotationAngle;
+    const startRotationAngle = ((rotationAngle % 360) + 360) % 360;
     const idleRotationAngle = 0;
-    
-    // Asigură-te că fastSpin se oprește
+
     isInFastSpin = false;
-  
+    isIdleRotationActive = false;
+
     const easeOut = (t) => t * (2 - t);
-  
-    const transitionStep = () => {
-        const elapsed = Date.now() - transitionStartTime;
+
+    const transitionStep = (timestamp) => {
+        if (!transitionStartTime) transitionStartTime = timestamp;
+        const elapsed = timestamp - transitionStartTime;
+
         if (elapsed < transitionDuration) {
             const progress = elapsed / transitionDuration;
             const easedProgress = easeOut(progress);
-            
-            // Tranziție lină spre idle
+
             rotationAngle = startRotationAngle * (1 - easedProgress);
             percentageR = startPercentageR * (1 - easedProgress);
             percentageB = startPercentageB * (1 - easedProgress);
-            
+
             d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
             drawShape(percentageR, percentageB);
-            
+
             requestAnimationFrame(transitionStep);
         } else {
-            // Resetare completă după tranziție
+            rotationAngle = idleRotationAngle;
             percentageR = 0;
             percentageB = 0;
-            rotationAngle = idleRotationAngle;
             isIdleRotationActive = true;
+            isInFastSpin = false;
+            startMorphing = false;
+
             drawShape(percentageR, percentageB);
-            rotateIdle(performance.now());  // Repornire animație idle
+            rotateIdle(performance.now());
         }
     };
 
       requestAnimationFrame(transitionStep);
-  };
-
-  window.smoothTransitionBackToIdle = smoothTransitionBackToIdle;
+    };
 
   const startAnimationLoop = () => {
     if (startMorphing) {
@@ -161,6 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(startAnimationLoop);
     }
   };
+  
+  window.smoothTransitionBackToIdle = smoothTransitionBackToIdle;
+  window.fastSpin = fastSpin;
 
   startAnimationLoop();
   drawShape(0, 0);
