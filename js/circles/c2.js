@@ -104,10 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const fastSpin = () => {
-    if (!isInFastSpin) {
-      isInFastSpin = true;
-      fastSpinStartTime = Date.now();
-    }
+    if (!isInFastSpin) return;
     rotationAngle += 2;
     d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
     requestAnimationFrame(fastSpin);
@@ -119,36 +116,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const startPercentageR = percentageR;
     const startPercentageB = percentageB;
     const startRotationAngle = rotationAngle;
-
     const idleRotationAngle = 0;
-
-    const easeOut = (t) => {
-      return t * (2 - t);
-    };
-
+    
+    // Asigură-te că fastSpin se oprește
+    isInFastSpin = false;
+  
+    const easeOut = (t) => t * (2 - t);
+  
     const transitionStep = () => {
-      const elapsed = Date.now() - transitionStartTime;
-      if (elapsed < transitionDuration) {
-        const progress = elapsed / transitionDuration;
-        const easedProgress = easeOut(progress);
-
-        rotationAngle = startRotationAngle - (startRotationAngle - idleRotationAngle) * easedProgress;
-        d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
-
-        percentageR = startPercentageR - (startPercentageR * easedProgress); 
-        percentageB = startPercentageB - (startPercentageB * easedProgress);
-        drawShape(percentageR, percentageB);
-
-        requestAnimationFrame(transitionStep);
-      } else {
-        percentageR = 0;
-        percentageB = 0;
-        drawShape(percentageR, percentageB);
-        rotateIdle(performance.now());
-      }
+        const elapsed = Date.now() - transitionStartTime;
+        if (elapsed < transitionDuration) {
+            const progress = elapsed / transitionDuration;
+            const easedProgress = easeOut(progress);
+            
+            // Tranziție lină spre idle
+            rotationAngle = startRotationAngle * (1 - easedProgress);
+            percentageR = startPercentageR * (1 - easedProgress);
+            percentageB = startPercentageB * (1 - easedProgress);
+            
+            d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+            drawShape(percentageR, percentageB);
+            
+            requestAnimationFrame(transitionStep);
+        } else {
+            // Resetare completă după tranziție
+            percentageR = 0;
+            percentageB = 0;
+            rotationAngle = idleRotationAngle;
+            isIdleRotationActive = true;
+            drawShape(percentageR, percentageB);
+            rotateIdle(performance.now());  // Repornire animație idle
+        }
     };
 
-    transitionStep();
+      requestAnimationFrame(transitionStep);
   };
 
   window.smoothTransitionBackToIdle = smoothTransitionBackToIdle;

@@ -40,8 +40,7 @@ function addOrangeBackgroundToContainer() {
 function addBlueBackgroundToContainer() {
   if (startMorphing) {
     startMorphing = false;
-    isInFastSpin = false;
-    isIdleRotationActive = true;
+    morphingDone = true;
     smoothTransitionBackToIdle();
   }
   const container = document.querySelector(".container");
@@ -52,7 +51,7 @@ function addBlueBackgroundToContainer() {
         currentBackground.remove();
         createNewBackground("blue");
         changeTextColorToBlue();
-      }, 1000);
+      }, 1000); // asigură-te că tranziția se termină înainte de a face alte modificări
     } else {
       createNewBackground("blue");
       changeTextColorToBlue();
