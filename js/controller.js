@@ -1,41 +1,61 @@
 let currentBackground = null;
 
-window.startMorphingAnimation = function () {
-  setTimeout(() => {
-    startMorphing = true;
-    addOrangeBackgroundToContainer();
-  }, 3000);
-};
-
-function addOrangeBackgroundToContainer() {
+function setBlueBackgroundOnRefresh() {
   const container = document.querySelector(".container");
   if (container) {
-    if (currentBackground) {
-      currentBackground.style.opacity = "0";
-      setTimeout(() => {
-        currentBackground.remove();
-        createNewBackground("orange");
-        changeTextColorToOrange();
-      }, 1000);
-      
-    } else {
-      createNewBackground("orange");
-    }
-  }
-}
-
-function addBlueBackgroundToContainer() {
-  const container = document.querySelector(".container");
-  if (container) {
-    changeTextColorToBlue();
     if (currentBackground) {
       currentBackground.style.opacity = "0";
       setTimeout(() => {
         currentBackground.remove();
         createNewBackground("blue");
+        changeTextColorToBlue();
       }, 1000);
     } else {
       createNewBackground("blue");
+      changeTextColorToBlue();
+    }
+  }
+}
+
+function addOrangeBackgroundToContainer() {
+  if (!startMorphing) {
+    startMorphing = true;
+    const container = document.querySelector(".container");
+    if (container) {
+      if (currentBackground) {
+        currentBackground.style.opacity = "0";
+        setTimeout(() => {
+          currentBackground.remove();
+          createNewBackground("orange");
+          changeTextColorToOrange();
+        }, 1000);
+      } else {
+        createNewBackground("orange");
+        changeTextColorToOrange();
+      }
+    }
+  }
+}
+
+function addBlueBackgroundToContainer() {
+  if (startMorphing) {
+    startMorphing = false;
+    isInFastSpin = false;
+    isIdleRotationActive = true;
+    smoothTransitionBackToIdle();
+  }
+  const container = document.querySelector(".container");
+  if (container) {
+    if (currentBackground) {
+      currentBackground.style.opacity = "0";
+      setTimeout(() => {
+        currentBackground.remove();
+        createNewBackground("blue");
+        changeTextColorToBlue();
+      }, 1000);
+    } else {
+      createNewBackground("blue");
+      changeTextColorToBlue();
     }
   }
 }
@@ -86,6 +106,4 @@ function changeTextColorToBlue() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  startMorphingAnimation();
-});
+document.addEventListener("DOMContentLoaded", setBlueBackgroundOnRefresh);

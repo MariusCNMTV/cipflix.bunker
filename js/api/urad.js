@@ -24,8 +24,12 @@ function fetchAndUpdateData() {
       const deviceOutside = data.find(device => device.id === "1100016F"); // Outside (Temperature)
 
       if (deviceInside) {
-        const lastCO2Inside = formatValue(deviceInside.last_co2);
-        //if(lastCO2Inside > 0 ) ... 
+        const lastCO2Inside = deviceInside.last_co2 || 0;
+        if (lastCO2Inside > 999 && !startMorphing) {
+          addOrangeBackgroundToContainer();
+        } else if (lastCO2Inside <= 999 && startMorphing) {
+          addBlueBackgroundToContainer();
+        }
         const lastTemperatureInside = formatValue(parseFloat(deviceInside.last_temperature).toFixed(1));
         const lastCH2O = formatValue(deviceInside.last_ch2o) ;
         const lastNoise = Math.round(deviceInside.last_noise);
