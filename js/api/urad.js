@@ -45,14 +45,14 @@ function fetchAndUpdateData() {
 
         document.querySelector('.ccontainer .number').textContent = lastCO2Inside;
         document.querySelector('.circle-container-right span[style*="--angle: -26deg;"]').textContent = lastTemperatureInside + " 'C";
-        document.querySelector('.rrectangles .grid-info-group:nth-of-type(1) .value').textContent = lastCH2O + " ppm";
-        document.querySelector('.rrectangles .grid-info-group:nth-of-type(2) .value').textContent = lastNoise + " db";
+        document.querySelector('.rrectangles .grid-info-group:nth-of-type(1) .value').textContent = lastCH2O + "ppm";
+        document.querySelector('.rrectangles .grid-info-group:nth-of-type(2) .value').textContent = lastNoise + "db";
         document.querySelector('.rrectangles .grid-info-group:nth-of-type(3) .value').textContent = lastHumidity + "%";
-        document.querySelector('.rrectangles .grid-info-group:nth-of-type(4) .value').textContent = lastPressure + " hPa";
+        document.querySelector('.rrectangles .grid-info-group:nth-of-type(4) .value').textContent = lastPressure + " Pa";
         document.querySelector('.lrectangles .grid-info-group:nth-of-type(1) .value').textContent = lastVOC;
-        document.querySelector('.lrectangles .grid-info-group:nth-of-type(2) .value').textContent = lastPM10 + " µg/m³";
-        document.querySelector('.lrectangles .grid-info-group:nth-of-type(3) .value').textContent = lastPM25 + " µg/m³";
-        document.querySelector('.lrectangles .grid-info-group:nth-of-type(4) .value').textContent = lastPM1 + " µg/m³";
+        document.querySelector('.lrectangles .grid-info-group:nth-of-type(2) .value').textContent = lastPM10 + "g/m³";
+        document.querySelector('.lrectangles .grid-info-group:nth-of-type(3) .value').textContent = lastPM25 + "g/m³";
+        document.querySelector('.lrectangles .grid-info-group:nth-of-type(4) .value').textContent = lastPM1 + "g/m³";
       }
 
       if (deviceOutside) {
