@@ -63,6 +63,6 @@ function fetchAndUpdateData() {
     .catch(error => console.error('Error fetching data:', error));
 }
 
-setInterval(fetchAndUpdateData, 5000);
+setInterval(fetchAndUpdateData, 50000);
 
 fetchAndUpdateData();
