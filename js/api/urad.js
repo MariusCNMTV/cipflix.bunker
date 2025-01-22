@@ -1,4 +1,5 @@
 // https://data.uradmonitor.com/api/v1/devices
+//'https://api.jsonbin.io/v3/b/678f5e33ad19ca34f8f1df74'
 //'X-User-id': '10519',
 //'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0',
 //'X-Master-Key': '$2a$10$Ugjkey.zuf8Y7c1BvbVid..xHJF8lYorHUBp2jwvxEWBIuBjyw.m2'
@@ -8,10 +9,11 @@ function formatValue(value) {
 }
 
 function fetchAndUpdateData() {
-  fetch('https://api.jsonbin.io/v3/b/678f5e33ad19ca34f8f1df74', {
+  fetch('https://data.uradmonitor.com/api/v1/devices', {
     method: 'GET',
     headers: {
-      'X-Master-Key': '$2a$10$Ugjkey.zuf8Y7c1BvbVid..xHJF8lYorHUBp2jwvxEWBIuBjyw.m2'
+      'X-User-id': '10519',
+      'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0'
     }
   })
     .then(response => {
@@ -19,10 +21,10 @@ function fetchAndUpdateData() {
       return response.json();
     })
     .then(data => {
-      data = data.record;
+      //data = data.record;
 
-      const deviceInside = data.find(device => device.id === "82000470"); // Inside (CO2)
-      const deviceOutside = data.find(device => device.id === "1100016F"); // Outside (Temperature)
+      const deviceInside = data.find(device => device.id === "82000470"); 
+      const deviceOutside = data.find(device => device.id === "1100016F");
 
       if (deviceInside) {
         const lastCO2Inside = deviceInside.last_co2 || 0;
@@ -103,6 +105,6 @@ function fetchAndUpdateData() {
     .catch(error => console.error('Error fetching data:', error));
 }
 
-setInterval(fetchAndUpdateData, 100000);
+setInterval(fetchAndUpdateData, 10000);
 
 fetchAndUpdateData();
