@@ -1,6 +1,7 @@
 // https://data.uradmonitor.com/api/v1/devices
 //'X-User-id': '10519',
 //'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0',
+//'X-Master-Key': '$2a$10$Ugjkey.zuf8Y7c1BvbVid..xHJF8lYorHUBp2jwvxEWBIuBjyw.m2'
 
 function formatValue(value) {
   return value > 1000 ? `${(value / 1000).toFixed(1)}k` : value;
@@ -102,6 +103,6 @@ function fetchAndUpdateData() {
     .catch(error => console.error('Error fetching data:', error));
 }
 
-setInterval(fetchAndUpdateData, 5000);
+setInterval(fetchAndUpdateData, 100000);
 
 fetchAndUpdateData();
