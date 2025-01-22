@@ -31,7 +31,7 @@ function fetchAndUpdateData() {
           addBlueBackgroundToContainer();
         }
         const lastTemperatureInside = formatValue(parseFloat(deviceInside.last_temperature).toFixed(1));
-        const lastCH2O = formatValue(deviceInside.last_ch2o) ;
+        const lastCH2O = formatValue(deviceInside.last_ch2o);
         const lastNoise = Math.round(deviceInside.last_noise);
         const lastHumidity = formatValue(parseFloat(deviceInside.last_humidity).toFixed(1));
         const lastPressure = formatValue((deviceInside.last_pressure / 100).toFixed(2));
@@ -59,10 +59,49 @@ function fetchAndUpdateData() {
         document.querySelector('.circle-container-left span[style*="--angle: 16deg;"]').textContent = lastTemperatureOutside + " 'C";
         document.querySelector('.bottom-banner .rad-info h1').textContent = lastRadiation;
       }
+
+      document.querySelectorAll('.grid-info-group').forEach(group => {
+        const currentElement = group.querySelector('.data .row:nth-child(1) .value');
+        const maxElement = group.querySelector('.data .row:nth-child(2) .value');
+        const minElement = group.querySelector('.data .row:nth-child(3) .value');
+        const progressElement = group.querySelector('.progress');
+        const progressValueLeft = group.querySelector('.progress-value-left');
+        const progressValueRight = group.querySelector('.progress-value-right');
+    
+        if (currentElement && maxElement && minElement && progressElement && progressValueLeft && progressValueRight) {
+          const current = parseFloat(currentElement.textContent.match(/[\d.]+/)[0]);
+          const max = parseFloat(maxElement.textContent.match(/[\d.]+/)[0]);
+          const min = parseFloat(minElement.textContent.match(/[\d.]+/)[0]);
+    
+          if (!isNaN(current) && !isNaN(max) && !isNaN(min) && max > min) {
+            const progress = ((current - min) / (max - min)) * 100;
+    
+            progressElement.style.width = `${progress}%`;
+            progressValueLeft.textContent = `${progress.toFixed(1)}%`;
+
+            if (progress < 10 || progress > 90) {
+              progressValueRight.textContent = "";
+              changeProgressBarColors("rgba(240, 109, 27, 0.7)", "rgb(240, 110, 27)", progressElement);
+            } else if(progress < 40){
+              progressValueRight.textContent = "";
+              changeProgressBarColors("rgba(73, 255, 255, 0.7)", "rgb(73, 255, 255)", progressElement);
+            } else {
+              const complementaryProgress = 100 - progress;
+              progressValueRight.textContent = `${complementaryProgress.toFixed(1)}%`;
+              changeProgressBarColors("rgba(73, 255, 255, 0.7)", "rgb(73, 255, 255)", progressElement);
+            }
+    
+          } else {
+            console.error('Valorile nu sunt valide:', { current, max, min });
+          }
+        } else {
+          console.error('Elemente lipsă în grupul curent:', group);
+        }
+      });
     })
     .catch(error => console.error('Error fetching data:', error));
 }
 
-setInterval(fetchAndUpdateData, 50000);
+setInterval(fetchAndUpdateData, 5000);
 
 fetchAndUpdateData();

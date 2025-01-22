@@ -105,4 +105,12 @@ function changeTextColorToBlue() {
   });
 }
 
+function changeProgressBarColors(newBarColor, newProgressColor, progressElement) {
+  progressElement.style.transition = "background-color 0.5s ease-in-out";
+  progressElement.style.backgroundColor = newProgressColor;
+  const progressBarElement = progressElement.closest('.progress-bar');
+  progressBarElement.style.transition = "background-color 0.5s ease-in-out";
+  progressBarElement.style.backgroundColor = newBarColor;
+}
+
 document.addEventListener("DOMContentLoaded", setBlueBackgroundOnRefresh);
