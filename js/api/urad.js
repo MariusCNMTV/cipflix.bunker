@@ -63,8 +63,6 @@ function fetchAndUpdateData() {
     .catch(error => console.error('Error fetching data:', error));
 }
 
-// Fetch data every 5 seconds
 setInterval(fetchAndUpdateData, 5000);
 
-// Initial fetch to populate data immediately
 fetchAndUpdateData();

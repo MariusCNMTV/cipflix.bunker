@@ -2,15 +2,99 @@ let startMorphing = false;
 let isInFastSpin = false;
 let isIdleRotationActive = true;
 let lastTimestamp = 0;
+let percentageR = 0;
+let percentageB = 0;
+let rotationAngle = -100;
+
+// Funcții globale
+const rotateIdle = (timestamp) => {
+  if (!isIdleRotationActive || isInFastSpin) return;
+
+  if (lastTimestamp) {
+    const deltaTime = timestamp - lastTimestamp;
+    rotationAngle += Math.sin(timestamp * 0.005) * 0.5 * deltaTime * 0.05;
+    d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+  }
+
+  lastTimestamp = timestamp;
+  requestAnimationFrame(rotateIdle);
+};
+
+const animate = () => {
+  if (percentageB === 100 && percentageR === 100) {
+    return;
+  }
+  if (percentageR < 100) {
+    percentageR += 2.5;
+  } else if (percentageB < 100) {
+    percentageB += 2.5;
+  } else if (percentageB > 0) {
+    percentageB -= 2.5;
+  }
+
+  drawShape(percentageR, percentageB);
+  requestAnimationFrame(animate);
+};
+
+const fastSpin = () => {
+  if (!startMorphing || !isInFastSpin) return;
+
+  rotationAngle += 2;
+  if (rotationAngle >= 360) rotationAngle -= 360;
+
+  d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+  requestAnimationFrame(fastSpin);
+};
+
+const smoothTransitionBackToIdle = () => {
+  let transitionStartTime = null;
+  const transitionDuration = 4000;
+  const startPercentageR = percentageR;
+  const startPercentageB = percentageB;
+  const startRotationAngle = ((rotationAngle % 360) + 360) % 360;
+  const idleRotationAngle = 0;
+
+  isInFastSpin = false;
+  isIdleRotationActive = false;
+  startMorphing = false;
+
+  const easeOut = (t) => t * (2 - t);
+
+  const transitionStep = (timestamp) => {
+    if (!transitionStartTime) transitionStartTime = timestamp;
+    const elapsed = timestamp - transitionStartTime;
+
+    if (elapsed < transitionDuration) {
+      const progress = elapsed / transitionDuration;
+      const easedProgress = easeOut(progress);
+
+      rotationAngle = startRotationAngle * (1 - easedProgress);
+      percentageR = startPercentageR * (1 - easedProgress);
+      percentageB = startPercentageB * (1 - easedProgress);
+
+      d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
+      drawShape(percentageR, percentageB);
+
+      requestAnimationFrame(transitionStep);
+    } else {
+      rotationAngle = idleRotationAngle;
+      isIdleRotationActive = true;
+      startMorphing = false;
+      percentageR = 0;
+      percentageB = 0;
+      drawShape(0, 0);
+      rotateIdle(performance.now());
+    }
+  };
+
+  requestAnimationFrame(transitionStep);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const width = 1000;
   const height = 1000;
   const numSegments = 25;
   const gapAngle = 0.1;
-  let percentageR = 0;
-  let percentageB = 0;
-  let rotationAngle = -100;
 
   const svg = d3
     .select("#c2")
@@ -34,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
   filter.append("feComposite").attr("in", "glowInner").attr("in2", "coloredBlur").attr("operator", "in").attr("result", "glowInner");
   filter.append("feMerge").selectAll("feMergeNode").data(["glowInner", "SourceGraphic"]).enter().append("feMergeNode").attr("in", (d) => d);
 
-  const drawShape = (pR, pB) => {
+  window.drawShape = (pR, pB) => {
     svg.selectAll("*").remove();
 
     const tiltAngle = 0.14 - (pR / 100) * 0.14;
@@ -67,98 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const rotateIdle = (timestamp) => {
-    if (!isIdleRotationActive || isInFastSpin) return;
-  
-    if (lastTimestamp) {
-      const deltaTime = timestamp - lastTimestamp;
-      rotationAngle += Math.sin(timestamp * 0.005) * 0.5 * deltaTime * 0.05;
-      d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
-    }
-  
-    lastTimestamp = timestamp;
-    requestAnimationFrame(rotateIdle);
-  };
-
-  const animate = () => {
-    if (percentageR < 100) {
-      percentageR += 3;
-    } else if (percentageB < 100) {
-      percentageB += 3;
-    } else if (percentageB > 0) {
-      percentageB -= 3;
-    }
-
-    drawShape(percentageR, percentageB);
-
-    requestAnimationFrame(animate);
-  };
-
-  const fastSpin = () => {
-    if (!startMorphing || !isInFastSpin) return;
-    
-    rotationAngle += 2;
-    if (rotationAngle >= 360) rotationAngle -= 360;
-
-    d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
-    requestAnimationFrame(fastSpin);
-  };
-
-  const smoothTransitionBackToIdle = () => {
-    let transitionStartTime = null;
-    const transitionDuration = 4000;
-    const startPercentageR = percentageR;
-    const startPercentageB = percentageB;
-    const startRotationAngle = ((rotationAngle % 360) + 360) % 360;
-    const idleRotationAngle = 0;
-    
-    isInFastSpin = false;
-    isIdleRotationActive = false;
-    startMorphing = false;
-  
-    const easeOut = (t) => t * (2 - t);
-  
-    const transitionStep = (timestamp) => {
-      if (!transitionStartTime) transitionStartTime = timestamp;
-      const elapsed = timestamp - transitionStartTime;
-  
-      if (elapsed < transitionDuration) {
-        const progress = elapsed / transitionDuration;
-        const easedProgress = easeOut(progress);
-  
-        rotationAngle = startRotationAngle * (1 - easedProgress);
-        percentageR = startPercentageR * (1 - easedProgress);
-        percentageB = startPercentageB * (1 - easedProgress);
-  
-        d3.select("#c2").style("transform", `rotate(${rotationAngle}deg)`);
-        drawShape(percentageR, percentageB);
-  
-        requestAnimationFrame(transitionStep);
-      } else {
-        rotationAngle = idleRotationAngle;
-        isIdleRotationActive = true;
-        startMorphing = false;
-        drawShape(0, 0);
-        rotateIdle(performance.now());
-      }
-    };
-  
-    requestAnimationFrame(transitionStep);
-  };
-  
-
-  const startAnimationLoop = () => {
-    if (startMorphing) {
-      requestAnimationFrame(animate);
-    } else {
-      requestAnimationFrame(startAnimationLoop);
-    }
-  };
-  window.smoothTransitionBackToIdle = smoothTransitionBackToIdle;
-  window.fastSpin = fastSpin;
-  
-
-  startAnimationLoop();
   drawShape(0, 0);
   rotateIdle(performance.now());
 });

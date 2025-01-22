@@ -22,6 +22,7 @@ function addOrangeBackgroundToContainer() {
     startMorphing = true;
     isInFastSpin = true;
     isIdleRotationActive = false;
+    requestAnimationFrame(animate);
     fastSpin();
 
     const container = document.querySelector(".container");
