@@ -4,25 +4,47 @@
 //'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0',
 //'X-Master-Key': '$2a$10$Ugjkey.zuf8Y7c1BvbVid..xHJF8lYorHUBp2jwvxEWBIuBjyw.m2'
 
+const thresholds = {
+  humidity: { low: 30, high: 70 },
+  ch2o: { low: 1, high: 20 },
+  voc: { low: 1, high: 500 },
+  pm10: { low: 0, high: 40 },
+  pm25: { low: 0, high: 40 },
+  pm1: { low: 0, high: 40 },
+  pressure: { low: 0.90, high: 1.05 },
+  noise: { low: 0, high: 70 }
+};
+
+function changeProgressBarColors(color1, color2, progressElement) {
+  progressElement.style.background = color1;
+  progressElement.querySelector('.progress-bar-fill').style.background = color2;
+}
+
 function formatValue(value) {
   return value > 1000 ? `${(value / 1000).toFixed(1)}k` : value;
+}
+
+function updateProgressBasedOnThreshold(currentValue, min, max, progressElement) {
+  const progress = Math.max(0, Math.min(100, ((currentValue - min) / (max - min)) * 100));
+
+  if (currentValue < min || currentValue > max) {
+    changeProgressBarColors("rgba(240, 109, 27, 0.7)", "rgb(240, 110, 27)", progressElement);
+  } else if (progress < 40) {
+    changeProgressBarColors("rgba(73, 255, 255, 0.7)", "rgb(73, 255, 255)", progressElement);
+  } else {
+    changeProgressBarColors("rgba(73, 255, 255, 0.7)", "rgb(73, 255, 255)", progressElement);
+  }
 }
 
 function fetchAndUpdateData() {
   fetch('https://data.uradmonitor.com/api/v1/devices', {
     method: 'GET',
-    headers: {
-      'X-User-id': '10519',
-      'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0'
-    }
+    headers: { 'X-User-id': '10519', 'X-User-hash': 'd6f8c2e695799fbe9605e6f65dd854b0' }
   })
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      return response.json();
-    })
+    .then(response => response.ok ? response.json() : Promise.reject('HTTP error'))
     .then(data => {
       //data = data.record;
-
+      
       const deviceInside = data.find(device => device.id === "82000470"); 
       const deviceOutside = data.find(device => device.id === "1100016F");
 
@@ -62,7 +84,7 @@ function fetchAndUpdateData() {
         document.querySelector('.circle-container-left span[style*="--angle: 16deg;"]').textContent = lastTemperatureOutside + " 'C";
         document.querySelector('.bottom-banner .rad-info h1').textContent = lastRadiation;
       }
-
+      
       document.querySelectorAll('.grid-info-group').forEach(group => {
         const currentElement = group.querySelector('.data .row:nth-child(1) .value');
         const maxElement = group.querySelector('.data .row:nth-child(2) .value');
@@ -70,30 +92,30 @@ function fetchAndUpdateData() {
         const progressElement = group.querySelector('.progress');
         const progressValueLeft = group.querySelector('.progress-value-left');
         const progressValueRight = group.querySelector('.progress-value-right');
-    
-        if (currentElement && maxElement && minElement && progressElement && progressValueLeft && progressValueRight) {
+
+        if (currentElement && maxElement && minElement && progressElement) {
           const current = parseFloat(currentElement.textContent.match(/[\d.]+/)[0]);
           const max = parseFloat(maxElement.textContent.match(/[\d.]+/)[0]);
           const min = parseFloat(minElement.textContent.match(/[\d.]+/)[0]);
-    
+          const title = group.querySelector('.title').textContent.trim().toLowerCase();
+
           if (!isNaN(current) && !isNaN(max) && !isNaN(min) && max > min) {
             const progress = ((current - min) / (max - min)) * 100;
-    
             progressElement.style.width = `${progress}%`;
             progressValueLeft.textContent = `${progress.toFixed(1)}%`;
 
             if (progress < 10 || progress > 90) {
               progressValueRight.textContent = "";
-              changeProgressBarColors("rgba(240, 109, 27, 0.7)", "rgb(240, 110, 27)", progressElement);
             } else if(progress < 40){
               progressValueRight.textContent = "";
-              changeProgressBarColors("rgba(73, 255, 255, 0.7)", "rgb(73, 255, 255)", progressElement);
             } else {
               const complementaryProgress = 100 - progress;
               progressValueRight.textContent = `${complementaryProgress.toFixed(1)}%`;
-              changeProgressBarColors("rgba(73, 255, 255, 0.7)", "rgb(73, 255, 255)", progressElement);
             }
-    
+
+            if (thresholds[title]) {
+              updateProgressBasedOnThreshold(current, thresholds[title].low, thresholds[title].high, progressElement);
+            }
           } else {
             console.error('Valorile nu sunt valide:', { current, max, min });
           }
@@ -106,5 +128,4 @@ function fetchAndUpdateData() {
 }
 
 setInterval(fetchAndUpdateData, 10000);
-
 fetchAndUpdateData();
