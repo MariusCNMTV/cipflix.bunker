@@ -21,7 +21,7 @@ function changeProgressBarColors(color1, color2, progressElement) {
 }
 
 function formatValue(value) {
-  return value > 1000 ? `${(value / 1000).toFixed(1)}k` : value;
+  return value > 900 ? `${(value / 1000).toFixed(1)}k` : value;
 }
 
 function updateProgressBasedOnThreshold(currentValue, min, max, progressElement) {
